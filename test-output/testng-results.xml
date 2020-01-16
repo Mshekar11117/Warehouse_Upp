@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="1" total="3" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="4975298" started-at="2020-01-16T05:54:08Z" finished-at="2020-01-16T07:17:03Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="4975298" started-at="2020-01-16T05:54:08Z" finished-at="2020-01-16T07:17:03Z">
+      <class name="WH.SuperAdminLogin">
+        <test-method status="PASS" signature="initialization()[pri:0, instance:WH.SuperAdminLogin@4cf777e8]" name="initialization" is-config="true" duration-ms="13749" started-at="2020-01-16T05:55:24Z" finished-at="2020-01-16T05:55:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method status="PASS" signature="SuperAdminflow()[pri:0, instance:WH.SuperAdminLogin@4cf777e8]" name="SuperAdminflow" duration-ms="4884785" started-at="2020-01-16T05:55:38Z" finished-at="2020-01-16T07:17:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SuperAdminflow -->
+        <test-method status="PASS" signature="closebrowser(org.testng.ITestResult)[pri:0, instance:WH.SuperAdminLogin@4cf777e8]" name="closebrowser" is-config="true" duration-ms="441" started-at="2020-01-16T07:17:03Z" finished-at="2020-01-16T07:17:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=SuperAdminflow status=SUCCESS method=SuperAdminLogin.SuperAdminflow()[pri:0, instance:WH.SuperAdminLogin@4cf777e8] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closebrowser -->
+      </class> <!-- WH.SuperAdminLogin -->
+      <class name="WH.CommonLogin">
+        <test-method status="PASS" signature="StartReport()[pri:0, instance:WH.CommonLogin@59ec2012]" name="StartReport" is-config="true" duration-ms="360" started-at="2020-01-16T05:54:08Z" finished-at="2020-01-16T05:54:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StartReport -->
+        <test-method status="PASS" signature="initialization()[pri:0, instance:WH.CommonLogin@59ec2012]" name="initialization" is-config="true" duration-ms="24421" started-at="2020-01-16T05:54:08Z" finished-at="2020-01-16T05:54:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method status="PASS" signature="commonflow()[pri:0, instance:WH.CommonLogin@59ec2012]" name="commonflow" duration-ms="50191" started-at="2020-01-16T05:54:33Z" finished-at="2020-01-16T05:55:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- commonflow -->
+        <test-method status="PASS" signature="closebrowser(org.testng.ITestResult)[pri:0, instance:WH.CommonLogin@59ec2012]" name="closebrowser" is-config="true" duration-ms="1297" started-at="2020-01-16T05:55:23Z" finished-at="2020-01-16T05:55:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=commonflow status=SUCCESS method=CommonLogin.commonflow()[pri:0, instance:WH.CommonLogin@59ec2012] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closebrowser -->
+      </class> <!-- WH.CommonLogin -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
