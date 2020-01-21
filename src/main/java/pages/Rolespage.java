@@ -84,6 +84,8 @@ public class Rolespage extends SuperTestNG {
 	public void printandverifyRolenames() {
 		PaginationPOM P = new PaginationPOM(driver);
 		TablesPOM T = new TablesPOM(driver);
+		HomepagePOM H = new HomepagePOM(driver);
+
 		int C = T.tablerows().size();
 		int pagination = P.numberpagination().size();
 
@@ -110,11 +112,21 @@ public class Rolespage extends SuperTestNG {
 			}
 		}
 
+		String user = H.userprofilename().getText().trim();
+//		String profile = H.profilename().getText().trim();
 		ArrayList<String> Exceldata = new ArrayList<String>();
-		int rowcount = Excel.getRowCount(xlPath, sheetname3);
-		for (int k = 0; k <= rowcount; k++) {
-			String Rolnames = Excel.getCellValue(xlPath, sheetname3, k, 1);
-			Exceldata.add(Rolnames);
+		if (user.equals(prop.getProperty("admin"))) {
+			int rowcount = Excel.getRowCount(xlPath, sheetname3);
+			for (int k = 1; k <= rowcount; k++) {
+				String Rolnames = Excel.getCellValue(xlPath, sheetname3, k, 1);
+				Exceldata.add(Rolnames);
+			}
+		} else {
+			int rowcount = Excel.getRowCount(xlPath, sheetname3);
+			for (int k = 0; k <= rowcount; k++) {
+				String Rolnames = Excel.getCellValue(xlPath, sheetname3, k, 1);
+				Exceldata.add(Rolnames);
+			}
 		}
 
 		if (names.equals(Exceldata)) {
@@ -128,6 +140,7 @@ public class Rolespage extends SuperTestNG {
 	public void printandverifyRolesdescription() {
 		PaginationPOM P = new PaginationPOM(driver);
 		TablesPOM T = new TablesPOM(driver);
+		HomepagePOM H = new HomepagePOM(driver);
 
 		int C = T.tablerows().size();
 		int pagination = P.numberpagination().size();
@@ -154,12 +167,21 @@ public class Rolespage extends SuperTestNG {
 				}
 			}
 		}
-
+		
+		String user = H.userprofilename().getText().trim();
 		ArrayList<String> Exceldata = new ArrayList<String>();
-		int rowcount = Excel.getRowCount(xlPath, sheetname3);
-		for (int k = 0; k <= rowcount; k++) {
-			String Roledesc = Excel.getCellValue(xlPath, sheetname3, k, 2);
-			Exceldata.add(Roledesc);
+		if(user.equals(prop.getProperty("admin"))) {
+			int rowcount = Excel.getRowCount(xlPath, sheetname3);
+			for (int k = 1; k <= rowcount; k++) {
+				String Roledesc = Excel.getCellValue(xlPath, sheetname3, k, 2);
+				Exceldata.add(Roledesc);
+			}
+		} else {
+			int rowcount = Excel.getRowCount(xlPath, sheetname3);
+			for (int k = 0; k <= rowcount; k++) {
+				String Roledesc = Excel.getCellValue(xlPath, sheetname3, k, 2);
+				Exceldata.add(Roledesc);
+			}
 		}
 
 		if (desc.equals(Exceldata)) {

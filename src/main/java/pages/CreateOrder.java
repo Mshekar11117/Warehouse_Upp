@@ -195,24 +195,24 @@ public class CreateOrder extends SuperTestNG {
 		s.assertEquals(Excel.getCellValue(xlPath, sheetname7, 4, 2), emptryorder);
 		s.assertAll();
 		C.OrderORSONumberfield().clear();
-		
+
 		H.WarehouseOrdermenu().click();
 		String orderno = W.firstdisplayedorderintable().getText();
-		
+
 		H.CreateOrder().click();
 		C.OrderORSONumberfield().sendKeys(orderno);
 		C.Savebutton().click();
 		String duplicate = C.OrderNumberfieldErrorMessage().getText();
-		
+
 		s.assertEquals(Excel.getCellValue(xlPath, sheetname7, 5, 2), duplicate);
 		C.OrderORSONumberfield().clear();
-		
+
 	}
 
 	public void Validordernofiled() throws Exception {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 		CreateOrder CO = new CreateOrder();
-		
+
 		CO.SaleTypeoption();
 
 		C.OrderORSONumberfield().sendKeys(genData.generateRandomAlphaNumeric(9));
@@ -266,7 +266,7 @@ public class CreateOrder extends SuperTestNG {
 		C.Savebutton().click();
 		String ddmmyyy = C.InvoiceDatefieldError().getText().trim();
 		Assert.assertEquals(Excel.getCellValue(xlPath, sheetname7, 14, 2), ddmmyyy);
-		
+
 		C.Invoicedatefield().clear();
 		C.Invoicedatefield().sendKeys(Excel.getCellValue(xlPath, sheetname7, 15, 0));
 		C.Savebutton().click();
@@ -292,7 +292,6 @@ public class CreateOrder extends SuperTestNG {
 		C.Savebutton().click();
 		String futuredateerror = C.InvoiceDatefieldError().getText();
 
-		
 		Assert.assertEquals(Datepickertitle, monthyear.toLowerCase());
 		Assert.assertEquals(Excel.getCellValue(xlPath, sheetname7, 15, 2), futuredateerror);
 
@@ -318,7 +317,7 @@ public class CreateOrder extends SuperTestNG {
 
 	public void InvalidWHReceiptsDate() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
-		
+
 		String emptyvalue = C.InvWHReceiptDatefieldErrormessage().getText().trim();
 		Assert.assertEquals(Excel.getCellValue(xlPath, sheetname7, 22, 2).trim(), emptyvalue);
 
@@ -326,7 +325,7 @@ public class CreateOrder extends SuperTestNG {
 		C.Savebutton().click();
 		String ddmmyyy = C.InvWHReceiptDatefieldErrormessage().getText().trim();
 		Assert.assertEquals(Excel.getCellValue(xlPath, sheetname7, 21, 2).trim(), ddmmyyy);
-		
+
 		C.InvWHReceiptsDatefield().clear();
 		C.InvWHReceiptsDatefield().sendKeys(Excel.getCellValue(xlPath, sheetname7, 22, 0));
 		C.Savebutton().click();
@@ -359,17 +358,17 @@ public class CreateOrder extends SuperTestNG {
 
 		C.InvWHReceiptsDatefield().clear();
 		C.InvWHReceiptsDatefield().click();
-		
+
 //		Select a date which is 2 month old from today date
 		LocalDate mydate = LocalDate.now();
 		mydate = mydate.minusMonths(2);
 		String strDate = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH).format(mydate);
-		
+
 		C.InvWHReceiptsDatefield().sendKeys(strDate);
 		C.Savebutton().click();
 		String datenotequl = C.InvWHReceiptDatefieldErrormessage().getText();
 		Assert.assertEquals(Excel.getCellValue(xlPath, sheetname7, 23, 2), datenotequl);
-		
+
 		C.InvWHReceiptsDatefield().clear();
 		C.InvWHReceiptsDatefield().sendKeys(Keys.TAB);
 
@@ -379,15 +378,15 @@ public class CreateOrder extends SuperTestNG {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 
 		C.InvWHReceiptsDatefield().click();
-		
+
 		String oldDate = C.Invoicedatefield().getAttribute("value");
-		System.out.println("Old Date---"+oldDate);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");   
-		Calendar cal = Calendar.getInstance();    
-		cal.setTime( dateFormat.parse(oldDate));    
-		cal.add( Calendar.DATE, 1 );    
-		String convertedDate=dateFormat.format(cal.getTime());    
-		
+		System.out.println("Old Date---" + oldDate);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateFormat.parse(oldDate));
+		cal.add(Calendar.DATE, 1);
+		String convertedDate = dateFormat.format(cal.getTime());
+
 		C.InvWHReceiptsDatefield().sendKeys(convertedDate);
 		C.Savebutton().click();
 
@@ -399,7 +398,7 @@ public class CreateOrder extends SuperTestNG {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 
 		int hrs = C.HoursOptions().size();
-		System.out.println("HRS--------"+hrs);
+		System.out.println("HRS--------" + hrs);
 		Assert.assertEquals(hrs, 14);
 
 		int min = C.MinutesOptions().size();
@@ -420,7 +419,7 @@ public class CreateOrder extends SuperTestNG {
 		int mer = R.nextInt(meridian);
 		WebElement AMPM = C.AMPMoptions().get(mer);
 		AMPM.click();
-		
+
 		C.Savebutton();
 	}
 
@@ -729,17 +728,17 @@ public class CreateOrder extends SuperTestNG {
 		select.selectByIndex(random);
 		C.Savebutton().click();
 	}
-	
+
 	public void VerifyRegionalZone() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 		int Regions = C.Regionalzonenameoptions().size();
-		
+
 		ArrayList<String> Regionnames = new ArrayList<String>();
 		for (int i = 0; i < Regions; i++) {
 			String rnames = C.Regionalzonenameoptions().get(i).getText();
 			Regionnames.add(rnames);
 		}
-		
+
 		int rowcount = Excel.getRowCount(xlPath, sheetname4);
 		for (int i = 0; i < rowcount; i++) {
 			String rz = Excel.getCellValue(xlPath, sheetname4, i, 5);
@@ -779,10 +778,11 @@ public class CreateOrder extends SuperTestNG {
 	public void WarehouseOptionSelect() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 		HomepagePOM H = new HomepagePOM(driver);
-		
+
 		int warehouse = C.Warehouseoptions().size();
+		System.out.println("Warehuouse drop donw options--"+warehouse);
 		int menucont = H.leftsidemenus().size();
-		if(menucont == Integer.parseInt(prop.getProperty("Superadminmenucount"))) {
+		if (menucont == Integer.parseInt(prop.getProperty("Superadminmenucount"))) {
 			Assert.assertEquals(warehouse, 6);
 			Select select = new Select(C.Warehousedropdown());
 			int random = ThreadLocalRandom.current().nextInt(1, warehouse);
@@ -790,10 +790,9 @@ public class CreateOrder extends SuperTestNG {
 		} else {
 			Assert.assertEquals(warehouse, 2);
 			Select select = new Select(C.Warehousedropdown());
-			select.selectByIndex(2);
+			select.selectByIndex(1);
 		}
-		
-		
+
 	}
 
 	public void InvalidDispatchDTfromWH() {
@@ -834,15 +833,15 @@ public class CreateOrder extends SuperTestNG {
 
 	public void ValidDispatchDTfromWH() throws Exception {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
-		
+
 		String oldDate = C.InvWHReceiptsDatefield().getAttribute("value");
-		System.out.println("Old Date---"+oldDate);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");   
-		Calendar cal = Calendar.getInstance();    
-		cal.setTime( dateFormat.parse(oldDate));    
-		cal.add( Calendar.DATE, 1 );    
-		String convertedDate=dateFormat.format(cal.getTime());
-		
+		System.out.println("Old Date---" + oldDate);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateFormat.parse(oldDate));
+		cal.add(Calendar.DATE, 1);
+		String convertedDate = dateFormat.format(cal.getTime());
+
 		C.DispatchDTfromWHfield().sendKeys(convertedDate);
 		C.DispatchDTfromWHfield().sendKeys(Keys.TAB);
 	}
@@ -913,25 +912,23 @@ public class CreateOrder extends SuperTestNG {
 		int errorcount = C.Errormessages().size();
 		Assert.assertEquals(Integer.parseInt(prop.getProperty("Mandatoryfields")) - 10, errorcount);
 	}
-	
+
 	public void VerifyModeofTransport() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 		int transport = C.ModeofTransportoptions().size();
-		
+
 		ArrayList<String> transportnames = new ArrayList<String>();
-		for (int i = 0; i < transport; i++) {
-			String rnames = C.ModeofTransportoptions().get(i).getText();
+		for (int i = 1; i < transport; i++) {
+			String rnames = C.ModeofTransportoptions().get(i).getText().trim().toLowerCase();
 			transportnames.add(rnames);
 		}
-		
-		int rowcount = Excel.getRowCount(xlPath, sheetname4);
-		for (int i = 0; i < rowcount; i++) {
-			String mt = Excel.getCellValue(xlPath, sheetname4, i, 6);
-			if (transportnames.contains(mt)) {
+
+		for (int i = 0; i < transport - 1; i++) {
+			String Excelvalue = Excel.getCellValue(xlPath, sheetname4, i, 6).trim().toLowerCase();
+			if (transportnames.contains(Excelvalue)) {
 				Assert.assertTrue(true);
 			} else {
-				System.out.println("Following Warehouse name is missing---" + mt);
-				Assert.assertTrue(false);
+				Assert.assertTrue(false, "Missing Mode of Transport option is---" + Excelvalue);
 			}
 		}
 	}
@@ -991,20 +988,19 @@ public class CreateOrder extends SuperTestNG {
 
 //		Select a date in a datepicker 2 days from current date
 		String oldDate = C.DispatchDTfromWHfield().getAttribute("value");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");   
-		Calendar cal = Calendar.getInstance();    
-		cal.setTime( dateFormat.parse(oldDate));    
-		cal.add( Calendar.DATE, 2 );    
-		String convertedDate=dateFormat.format(cal.getTime());
-		
-		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateFormat.parse(oldDate));
+		cal.add(Calendar.DATE, 2);
+		String convertedDate = dateFormat.format(cal.getTime());
+
 		C.ExpectedDateOfDeliveryfield().sendKeys(convertedDate);
 		C.Savebutton().click();
 	}
-	
+
 	public void InvalidActualDeliveryDate() {
-		CreateOrderPOM C =  new CreateOrderPOM(driver);
-		
+		CreateOrderPOM C = new CreateOrderPOM(driver);
+
 		C.ActualDeliveryDatefield().sendKeys(Excel.getCellValue(xlPath, sheetname7, 103, 0));
 		C.Savebutton().click();
 		String ddmmyyy = C.ActualDeliveryDateFieldErrorMessage().getText().trim();
@@ -1044,23 +1040,23 @@ public class CreateOrder extends SuperTestNG {
 		C.ActualDeliveryDatefield().clear();
 		C.ActualDeliveryDatefield().sendKeys(Keys.TAB);
 	}
-	
+
 	public void validActualDeliveryDate() throws Exception {
-		
+
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 
 //		Select a date in a datepicker 2 days from current date
 		String oldDate = C.ExpectedDateOfDeliveryfield().getAttribute("value");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");   
-		Calendar cal = Calendar.getInstance();    
-		cal.setTime( dateFormat.parse(oldDate));    
-		cal.add( Calendar.DATE, 2 );    
-		String convertedDate=dateFormat.format(cal.getTime());
-		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateFormat.parse(oldDate));
+		cal.add(Calendar.DATE, 2);
+		String convertedDate = dateFormat.format(cal.getTime());
+
 		C.ActualDeliveryDatefield().sendKeys(convertedDate);
 		C.Savebutton().click();
 	}
-	
+
 	public void InvalidReceivedBy() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 
@@ -1087,7 +1083,7 @@ public class CreateOrder extends SuperTestNG {
 		int errorcount = C.Errormessages().size();
 		Assert.assertEquals(Integer.parseInt(prop.getProperty("Mandatoryfields")) - 10, errorcount);
 	}
-	
+
 	public void Status() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 
@@ -1100,65 +1096,63 @@ public class CreateOrder extends SuperTestNG {
 		int errorcount = C.Errormessages().size();
 		Assert.assertEquals(Integer.parseInt(prop.getProperty("Mandatoryfields")) - 10, errorcount);
 	}
-	
+
 	public void VerifyStatus() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
 		int Status = C.Statusoptions().size();
-		
+
 		ArrayList<String> statusnames = new ArrayList<String>();
-		for (int i = 0; i < Status; i++) {
+		for (int i = 1; i < Status; i++) {
 			String rnames = C.Statusoptions().get(i).getText();
 			statusnames.add(rnames);
 		}
-		
-		int rowcount = Excel.getRowCount(xlPath, sheetname4);
-		for (int i = 0; i < rowcount; i++) {
+
+		for (int i = 0; i < Status-1; i++) {
 			String sn = Excel.getCellValue(xlPath, sheetname4, i, 7);
 			if (statusnames.contains(sn)) {
 				Assert.assertTrue(true);
 			} else {
-				System.out.println("Following Warehouse name is missing---" + sn);
-				Assert.assertTrue(false);
+				Assert.assertTrue(false, "Missing Status from dropdown is--"+sn);
 			}
 		}
 	}
-	
+
 	public void Remarks() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
-		
+
 		C.Remarksfield().sendKeys(prop.getProperty("Remarkstext"));
 		C.Savebutton();
 	}
-	
-	public void invalidUpload(){
-		CreateOrderPOM C =  new CreateOrderPOM(driver);
+
+	public void invalidUpload() {
+		CreateOrderPOM C = new CreateOrderPOM(driver);
 
 		String filepath = System.getProperty("user.dir") + "\\UploadFile\\sample.xlsx";
 		C.Uploadinputupload().sendKeys(filepath);
 		Assert.assertTrue(C.UploadErrorMessage().isDisplayed());
-		
+
 		String NoFileSelect = C.NoFileSelectedErrorMessage().getText();
 		Assert.assertEquals(prop.getProperty("NoFileSelected"), NoFileSelect);
-		
+
 		C.UploadRemovebutton().click();
 	}
-	
+
 	public void validUpload() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
-		
+
 		String filepath = System.getProperty("user.dir") + "\\UploadFile\\packs.png";
 		C.Uploadinputupload().sendKeys(filepath);
-		
+
 		String uploadtext = C.Uploadwarningtext().getText();
 		Assert.assertEquals(prop.getProperty("UploadPODText"), uploadtext);
-		
+
 	}
-	
+
 	public void CopyValuesandVerify() throws Exception {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
-		SearchfunctionalityPOM S =  new SearchfunctionalityPOM(driver);
+		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
 		TablesPOM T = new TablesPOM(driver);
-		
+
 		String Orderno = C.OrderORSONumberfield().getAttribute("value");
 		String DistName = C.DistributornameField().getAttribute("value");
 		String Distid = C.DistributorIDorUPPfield().getAttribute("value");
@@ -1167,14 +1161,14 @@ public class CreateOrder extends SuperTestNG {
 		String DocketNo = C.Docketnofield().getAttribute("value");
 		String Transporter = C.TransporterNamefield().getAttribute("value");
 		String ModeofTransport = C.ModeTransportationSelected().getAttribute("value");
-	
+
 		C.Savebutton().click();
 		Assert.assertEquals(prop.getProperty("warehouseurl"), driver.getCurrentUrl());
 		Assert.assertTrue(C.OrderCreatedSucessfullMessage().isDisplayed());
-		
+
 		S.orderno().sendKeys(Orderno);
 		S.Searchbutton().click();
-		
+
 		String TOrderno = T.Ordernumber().getText();
 		String TDistName = T.DistName().getText();
 		String TDistid = T.DistId().getText();
@@ -1184,16 +1178,16 @@ public class CreateOrder extends SuperTestNG {
 		String TDocketNo = T.DocketNumber().getText();
 		String TTransporter = T.transporterName().getText();
 		String TModeofTransport = T.Modeoftransport().getText();
-		
+
 		String TExpectedDate = T.ExpectedDeliveryDate().getText();
 		LocalDate LocalExpected = LocalDate.parse(TExpectedDate);
-		
+
 		String TDispatchDate = T.DispatchDTfromWH().getText();
 		LocalDate LocalDispatch = LocalDate.parse(TDispatchDate);
-	
+
 		long noofDays = ChronoUnit.DAYS.between(LocalExpected, LocalDispatch);
-		System.out.println("TAT----"+noofDays);
-		
+		System.out.println("TAT----" + noofDays);
+
 		Assert.assertEquals(Orderno, TOrderno);
 		Assert.assertEquals(DistName, TDistName);
 		Assert.assertEquals(Distid, TDistid);
@@ -1202,77 +1196,71 @@ public class CreateOrder extends SuperTestNG {
 		Assert.assertEquals(DocketNo, TDocketNo);
 		Assert.assertEquals(Transporter, TTransporter);
 		Assert.assertEquals(ModeofTransport, TModeofTransport);
-		
+
 		T.firstviewbutton().click();
 		String Warehouse = C.WarehouseSelectedOptionViewFlow().getAttribute("placeholder");
 		Assert.assertEquals(Warehouse, TWarehouse);
 		C.Cancelbutton().click();
 	}
-	
+
 	public void CaluclateAllTAT() {
-		CreateOrderPOM C =  new CreateOrderPOM(driver);
+		CreateOrderPOM C = new CreateOrderPOM(driver);
 		TablesPOM T = new TablesPOM(driver);
-		
+
 		String TableCtat = T.CTAT().getText();
-		
+
 		T.firstupdatebutton().click();
 		String DSTAT = C.DSTeamOrderSenttoWHTATDaysfield().getAttribute("value").trim();
 		String WHPTAT = C.WHprocessingTATDaysfield().getAttribute("value").trim();
 		String COTAT = C.CourierTeamTATfield().getAttribute("value").trim();
 		String ActualTAT = C.ActualOrderDeliveryTATfield().getAttribute("value").trim();
-		
-		String Webinvoice = C.InvWHReceiptsDatefield().getAttribute("value"); 
+
+		String Webinvoice = C.InvWHReceiptsDatefield().getAttribute("value");
 		String invoiceReceived = C.Invoicedatefield().getAttribute("value");
 		String DispatchWH = C.DispatchDTfromWHfield().getAttribute("value");
 		String ActualDelivery = C.ActualDeliveryDatefield().getAttribute("value");
-		
-		
+
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-		
+
 		Date d1 = null;
 		Date d2 = null;
 		Date d3 = null;
 		Date d4 = null;
-		
+
 		try {
 			d1 = format.parse(Webinvoice);
 			d2 = format.parse(invoiceReceived);
 			d3 = format.parse(DispatchWH);
 			d4 = format.parse(ActualDelivery);
-			
-					
-			long DSTdiff = d1.getTime()-d2.getTime();
+
+			long DSTdiff = d1.getTime() - d2.getTime();
 			long d = TimeUnit.MILLISECONDS.toDays(DSTdiff);
 			String DSTeamOrderSent = String.valueOf(d);
-					
+
 			long WHTAT = d3.getTime() - d1.getTime();
 			long W = TimeUnit.MILLISECONDS.toDays(WHTAT);
-			String WHProcessTAT = String.valueOf(W); 
-			
+			String WHProcessTAT = String.valueOf(W);
+
 			long CourierTAT = d4.getTime() - d3.getTime();
 			long Co = TimeUnit.MILLISECONDS.toDays(CourierTAT);
 			String CourierTeamTAT = String.valueOf(Co);
-			
+
 			long ActualOrderTAT = d4.getTime() - d2.getTime();
 			long A = TimeUnit.MILLISECONDS.toDays(ActualOrderTAT);
 			String ActualOrderDeliveryTAT = String.valueOf(A);
-			
+
 			Assert.assertEquals(DSTAT, DSTeamOrderSent);
 			Assert.assertEquals(WHPTAT, WHProcessTAT);
 			Assert.assertEquals(COTAT, CourierTeamTAT);
 			Assert.assertEquals(ActualTAT, ActualOrderDeliveryTAT);
 			Assert.assertEquals(TableCtat, CourierTeamTAT);
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		C.Cancelbutton().click();
-		
-	}
-	
-	
 
+		C.Cancelbutton().click();
+
+	}
 
 }

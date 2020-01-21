@@ -19,6 +19,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,17 +36,16 @@ import base.SuperTestNG;
 import POM.ViewOrdersPOM;
 
 public class Searchfunctionality extends SuperTestNG {
-	
 
 	public void verifySearchTitles() {
 		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
-		HomepagePOM H =  new HomepagePOM(driver);
-		
-		int menucount = H.leftsidemenus().size();		
+		HomepagePOM H = new HomepagePOM(driver);
+
+		int menucount = H.leftsidemenus().size();
 		String text = S.numberofentries().getText();
 		String totalvalidorders = text.replaceAll("[^0-9]", "").trim();
 		int rcount = Integer.parseInt(totalvalidorders);
-		
+
 		String Ordertitle = S.ordernotitle().getText();
 		String Distid = S.DistributorIDtitle().getText();
 		String Saletype = S.SaleTypetitle().getText();
@@ -54,8 +54,8 @@ public class Searchfunctionality extends SuperTestNG {
 		String todate = S.ToDateTitle().getText();
 		String DistributorName = S.DistributorNameTitle().getText();
 		String Distributorphone = S.DistributorPhoneTitle().getText();
-		
-		if(menucount == Integer.parseInt(prop.getProperty("WHuserMenuCount"))) {
+
+		if (menucount == Integer.parseInt(prop.getProperty("WHuserMenuCount"))) {
 			Assert.assertEquals(Ordertitle, prop.getProperty("orderno"));
 			Assert.assertEquals(Distid, prop.getProperty("distributorid"));
 			Assert.assertEquals(Saletype, prop.getProperty("saletype"));
@@ -75,17 +75,17 @@ public class Searchfunctionality extends SuperTestNG {
 			Assert.assertEquals(todate, prop.getProperty("todate"));
 			Assert.assertEquals(DistributorName, prop.getProperty("distributorname"));
 			Assert.assertEquals(Distributorphone, prop.getProperty("distributorphone"));
-	}
-		System.out.println("rcount value---"+rcount);
-		if(rcount > 0) {
-		String Exportexcel = S.ExportExcel().getText();
-		Assert.assertEquals(Exportexcel, prop.getProperty("exportexcel"));
-		String Exportpdf = S.ExportPDF().getText();
-		Assert.assertEquals(Exportpdf, prop.getProperty("exportpdf"));
+		}
+		System.out.println("rcount value---" + rcount);
+		if (rcount > 0) {
+			String Exportexcel = S.ExportExcel().getText();
+			Assert.assertEquals(Exportexcel, prop.getProperty("exportexcel"));
+			String Exportpdf = S.ExportPDF().getText();
+			Assert.assertEquals(Exportpdf, prop.getProperty("exportpdf"));
 		} else {
 			System.out.println("No Records found in Table");
 		}
-		
+
 		String Search = S.Searchbutton().getAttribute("value");
 		Assert.assertEquals(Search, prop.getProperty("search"));
 		String reset = S.Resetbutton().getText();
@@ -100,43 +100,43 @@ public class Searchfunctionality extends SuperTestNG {
 	 */
 
 	public void exportexcel() throws Exception {
-		HomepagePOM H =  new HomepagePOM(driver);
+		HomepagePOM H = new HomepagePOM(driver);
 		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
-		
+
 		H.WarehouseOrdermenu().click();
-		
+
 		int noOfEntries = getNumberOfEntries();
 		System.out.println("Total number of entries in Excel export :- " + noOfEntries);
-		
-		if(noOfEntries > 0) {
-		S.ExportExcel().click();
-		Thread.sleep(10000);
-		getLatestFilefromDir(Exceldownloadpath);
-		File file = getLatestFilefromDir(Exceldownloadpath);
-		String ExcelFilename = file.getName();
 
-		System.out.println("Verifying number of entries with number of entries in Excel sheet");
-		Assert.assertEquals(noOfEntries, getRecordsCountInExcel(Exceldownloadpath, ExcelFilename));
+		if (noOfEntries > 0) {
+			S.ExportExcel().click();
+			Thread.sleep(10000);
+			getLatestFilefromDir(Exceldownloadpath);
+			File file = getLatestFilefromDir(Exceldownloadpath);
+			String ExcelFilename = file.getName();
+
+			System.out.println("Verifying number of entries with number of entries in Excel sheet");
+			Assert.assertEquals(noOfEntries, getRecordsCountInExcel(Exceldownloadpath, ExcelFilename));
 		}
 	}
 
 	public void exportPDF() throws Exception {
 		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
 		WHTablesPOM T = new WHTablesPOM(driver);
-		
+
 		int noOfEntries = getNumberOfEntries();
 		System.out.println("Total number of entries in Export PDF :- " + noOfEntries);
-		
-		if(noOfEntries > 0) {
-		String Firstorder = T.firstdisplayedorderintable().getText();
-		S.ExportPDF().click();
-		Thread.sleep(5000);
-		getLatestFilefromDir(Exceldownloadpath);
-		File file = getLatestFilefromDir(Exceldownloadpath);
-		String PDFFilename = file.getName();
 
-		Assert.assertTrue(PDFFilename.contains(".pdf"));
-		Assert.assertTrue(getPDFrecord(Exceldownloadpath, PDFFilename).contains(Firstorder));
+		if (noOfEntries > 0) {
+			String Firstorder = T.firstdisplayedorderintable().getText();
+			S.ExportPDF().click();
+			Thread.sleep(5000);
+			getLatestFilefromDir(Exceldownloadpath);
+			File file = getLatestFilefromDir(Exceldownloadpath);
+			String PDFFilename = file.getName();
+
+			Assert.assertTrue(PDFFilename.contains(".pdf"));
+			Assert.assertTrue(getPDFrecord(Exceldownloadpath, PDFFilename).contains(Firstorder));
 		}
 	}
 
@@ -209,9 +209,9 @@ public class Searchfunctionality extends SuperTestNG {
 	public void verifypagination() throws Exception {
 		PaginationPOM P = new PaginationPOM(driver);
 		int pagesize = P.paginationlinks().size();
-		if(pagesize > 0) {
-		for (int i = 1; i < pagesize; i++) {
-			P.paginationlinks().get(i).click();
+		if (pagesize > 0) {
+			for (int i = 1; i < pagesize; i++) {
+				P.paginationlinks().get(i).click();
 			}
 		}
 
@@ -252,14 +252,14 @@ public class Searchfunctionality extends SuperTestNG {
 		PaginationPOM P = new PaginationPOM(driver);
 		int length = P.paginationlinks().size();
 		Random r = new Random();
-		if(length > 0) {
+		if (length > 0) {
 			String pagename = P.paginationlinks().get(r.nextInt(length)).getText();
 			System.out.println("Pagename---" + pagename);
 			P.paginationlinks().get(r.nextInt(length)).click();
 		} else {
 			System.out.println("Pagination is not enables as we don't have it");
 		}
-		
+
 	}
 
 	public void OrderNumberfield() throws Exception {
@@ -395,14 +395,14 @@ public class Searchfunctionality extends SuperTestNG {
 		Assert.assertEquals(rcount, Integer.parseInt(totalvalidorders));
 		System.out.println("************Result count function over***********");
 	}
-	
+
 	public void Verifyoptions() {
-		HomepagePOM H =  new HomepagePOM(driver);
-		SearchfunctionalityPOM S =  new SearchfunctionalityPOM(driver);
+		HomepagePOM H = new HomepagePOM(driver);
+		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
 		WHTablesPOM T = new WHTablesPOM(driver);
 		int menucount = H.leftsidemenus().size();
 		WebElement first = T.firstcheckbox();
-		
+
 		if (menucount == Integer.parseInt(prop.getProperty("customerMenuCount"))) {
 			Assert.assertTrue(driver.findElements(By.cssSelector("a#sendsms")).size() == 0);
 			Assert.assertTrue(driver.findElements(By.xpath("//*[text()='Import Order']")).size() == 0);
@@ -410,7 +410,7 @@ public class Searchfunctionality extends SuperTestNG {
 			first.click();
 			Assert.assertTrue(S.BulckActiontext().isDisplayed());
 			first.click();
-		} 
+		}
 	}
 
 	public void VerifyTotalCount() {
@@ -419,25 +419,33 @@ public class Searchfunctionality extends SuperTestNG {
 		PaginationPOM P = new PaginationPOM(driver);
 
 		int rcount = T.Actionviews().size();
+		int pagination = P.numberpagination().size();
 
-		while (P.numberpagination().size() > 0) {
-			if (P.nextpage().size() > 0) {
-				P.nextarrow().click();
+		if (pagination > 0) {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			for (int i = 3; i < pagination; i++) {
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				WebElement page = driver.findElement(By.xpath("//ul[@class='pagination']/li[" + i + "]/a"));
+				wait.until(ExpectedConditions.elementToBeClickable(page));
+				page.click();
 				rcount += T.Actionedits().size();
-			} else {
-				break;
 			}
 		}
-		
+
+		/*
+		 * while (P.numberpagination().size() > 0) { if (P.nextpage().size() > 0) {
+		 * P.nextarrow().click(); rcount += T.Actionedits().size(); } else { break; } }
+		 */
+
 		String text = S.numberofentries().getText();
-		System.out.println("Text---"+text);
-		
 		String totalvalidorders = text.replaceAll("[^0-9]", "").trim();
-		System.out.println("Totalvalid orders---"+totalvalidorders);
-	
-		System.out.println("Rcount----"+rcount);
+//		String totalvalidorders = S.numberofentries().getText();
+
+		System.out.println("Total order count---" + totalvalidorders);
+		System.out.println("Rcount----" + rcount);
 		Assert.assertEquals(rcount, Integer.parseInt(totalvalidorders));
-		System.out.println("************Verify Count Function over***********");
+		System.out.println("************Total valid order number is---" + totalvalidorders + "**************");
 	}
 
 	public void SelectWarehouse() throws Exception {
@@ -453,7 +461,7 @@ public class Searchfunctionality extends SuperTestNG {
 		wh.selectByIndex(randnumber);
 
 		String whname = wh.getFirstSelectedOption().getText();
-		System.out.println("Brefore wh name--"+whname);
+		System.out.println("Brefore wh name--" + whname);
 		WebDriverWait wait = new WebDriverWait(driver, 100);
 		wait.until(ExpectedConditions.textToBePresentInElement(wh.getFirstSelectedOption(), whname));
 		S.Searchbutton().click();
@@ -461,7 +469,7 @@ public class Searchfunctionality extends SuperTestNG {
 		int aftercount = T.Warehousenames().size();
 		for (int i = 0; i < aftercount; i++) {
 			String whnames = T.Warehousenames().get(i).getText();
-			System.out.println("Warehouse Names---"+whnames);
+			System.out.println("Warehouse Names---" + whnames);
 			Assert.assertEquals(whname, whnames);
 		}
 		Se.VerifyTotalCount();
@@ -474,7 +482,7 @@ public class Searchfunctionality extends SuperTestNG {
 
 		Select Saletype = new Select(S.Saletype());
 		int count = S.Saletypeoptions().size();
-		
+
 		int randnumber = ThreadLocalRandom.current().nextInt(1, count);
 		Saletype.selectByIndex(randnumber);
 
@@ -491,7 +499,7 @@ public class Searchfunctionality extends SuperTestNG {
 	public void searcherror() throws Exception {
 		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
 		HomepagePOM h = new HomepagePOM(driver);
-		
+
 		h.WarehouseOrdermenu().click();
 		S.Searchbutton().click();
 		Thread.sleep(1000);
@@ -611,8 +619,10 @@ public class Searchfunctionality extends SuperTestNG {
 		WebElement second = T.secondcheckbox();
 		WebElement remove = T.deleterecordbutton();
 
-		first.click();
-		remove.click();
+		if (checkboxes > 0) {
+			first.click();
+			remove.click();
+		}
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(M.RecordModal()));
@@ -626,12 +636,14 @@ public class Searchfunctionality extends SuperTestNG {
 
 		wait.until(ExpectedConditions.invisibilityOf(M.RecordModal()));
 		first.click();
-		second.click();
-		remove.click();
-
-		M.RecordModalcancelbutton().click();
-		wait.until(ExpectedConditions.invisibilityOf(M.RecordModal()));
-
+		
+		if (checkboxes > 1) {
+			second.click();
+			remove.click();
+			M.RecordModalcancelbutton().click();
+			wait.until(ExpectedConditions.invisibilityOf(M.RecordModal()));
+		}
+		
 		S.Resetbutton().click();
 		Random r = new Random();
 		int count = r.nextInt(checkboxes);

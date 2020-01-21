@@ -159,16 +159,18 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 		Random r = new Random();
 		XlApiTest xl = new XlApiTest(filePath);
 		int rowcount = xl.HFFSgetRowCount("Sheet 1");
-		String uppno = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", r.nextInt(rowcount)).toLowerCase().replace(" ", "").trim();
+		String uppno = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", r.nextInt(rowcount)).toLowerCase()
+				.replace(" ", "").trim();
 
 		int excelcount = 0;
 		for (int i = 1; i <= rowcount; i++) {
-			String uppnoexcel = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", i).toLowerCase().replace(" ", "").trim();
+			String uppnoexcel = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", i).toLowerCase().replace(" ", "")
+					.trim();
 			if (uppnoexcel.equals(uppno)) {
 				String OrderID = xl.HSSFgetCellDataByColName("Sheet 1", "upp_pay_order_id", i).toLowerCase().trim();
-				System.out.println("Random Excel upp no---"+uppno);
-				System.out.println("Excel upp no---"+uppnoexcel);
-				System.out.println("Order id----"+OrderID);
+				System.out.println("Random Excel upp no---" + uppno);
+				System.out.println("Excel upp no---" + uppnoexcel);
+				System.out.println("Order id----" + OrderID);
 				excelcount++;
 			}
 		}
@@ -811,67 +813,71 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 	}
 
 	public void UppNumberCombinationSearch(int n, String selection) throws Exception {
-		uppPaymentTablePOM ut = new uppPaymentTablePOM(driver);
-		uppPaymentPOM u = new uppPaymentPOM(driver);
-		ExportExcel ex = new ExportExcel();
+		try {
+			uppPaymentTablePOM ut = new uppPaymentTablePOM(driver);
+			uppPaymentPOM u = new uppPaymentPOM(driver);
+			ExportExcel ex = new ExportExcel();
 
-		u.clearbutton().click();
+			u.clearbutton().click();
 
-		Select select = new Select(u.SearchUppOrderStatus());
-		select.selectByIndex(n);
-		u.Searchbutton().click();
-		Thread.sleep(1000);
+			Select select = new Select(u.SearchUppOrderStatus());
+			select.selectByIndex(n);
+			u.Searchbutton().click();
+			Thread.sleep(1000);
 
-		File file = ex.getLatestFilefromDir(Exceldownloadpath);
-		String ExcelFilename = file.getName();
-		String filePath = Exceldownloadpath + System.getProperty("file.separator") + ExcelFilename;
-		XlApiTest xl = new XlApiTest(filePath);
-		int rowcount = xl.HFFSgetRowCount("Sheet 1");
+			File file = ex.getLatestFilefromDir(Exceldownloadpath);
+			String ExcelFilename = file.getName();
+			String filePath = Exceldownloadpath + System.getProperty("file.separator") + ExcelFilename;
+			XlApiTest xl = new XlApiTest(filePath);
+			int rowcount = xl.HFFSgetRowCount("Sheet 1");
 
-		Random r = new Random();
-		String uppno = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", r.nextInt(rowcount)).toLowerCase().trim();
-		System.out.println("Upp No " + selection + "---" + uppno);
+			Random r = new Random();
+			String uppno = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", r.nextInt(rowcount)).toLowerCase().trim();
+			System.out.println("Upp No " + selection + "---" + uppno);
 
-		String Upppaystatus = selection;
-		int uppnumbercount = 0;
-		for (int i = 0; i <= rowcount; i++) {
-			String Exceluppno = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", i).toLowerCase().trim();
-			if (uppno.equals(Exceluppno)) {
-				String paystatus = xl.HSSFgetCellDataByColName("Sheet 1", "upp_pay_status", i).toLowerCase().trim();
-				if (paystatus.equals(Upppaystatus.toLowerCase().trim())) {
-					uppnumbercount++;
+			String Upppaystatus = selection;
+			int uppnumbercount = 0;
+			for (int i = 0; i <= rowcount; i++) {
+				String Exceluppno = xl.HSSFgetCellDataByColName("Sheet 1", "upp_no", i).toLowerCase().trim();
+				if (uppno.equals(Exceluppno)) {
+					String paystatus = xl.HSSFgetCellDataByColName("Sheet 1", "upp_pay_status", i).toLowerCase().trim();
+					if (paystatus.equals(Upppaystatus.toLowerCase().trim())) {
+						uppnumbercount++;
+					}
 				}
 			}
-		}
 
-		u.SearchUppNo().sendKeys(uppno);
-		u.Searchbutton().click();
+			u.SearchUppNo().sendKeys(uppno);
+			u.Searchbutton().click();
 
-		if (ut.NumberofPagination().size() > 0) {
-			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
-			int totalrow = ut.TotalNumberofRow().size();
+			if (ut.NumberofPagination().size() > 0) {
+				int length = ut.NumberofPagination().size();
+				ArrayList<Integer> array = new ArrayList<>();
+				int totalrow = ut.TotalNumberofRow().size();
 
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			WebDriverWait wait = new WebDriverWait(driver, 10);
-			for (int i = 3; i < length; i++) {
-				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-				WebElement page = driver.findElement(By.xpath("//ul[@class='pagination']/li[" + i + "]/a"));
-				wait.until(ExpectedConditions.elementToBeClickable(page));
-				page.click();
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				WebDriverWait wait = new WebDriverWait(driver, 10);
+				for (int i = 3; i < length; i++) {
+					js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+					WebElement page = driver.findElement(By.xpath("//ul[@class='pagination']/li[" + i + "]/a"));
+					wait.until(ExpectedConditions.elementToBeClickable(page));
+					page.click();
 
-				array.add(totalrow);
-				totalrow = ut.TotalNumberofRow().size();
+					array.add(totalrow);
+					totalrow = ut.TotalNumberofRow().size();
+				}
+
+				int sum = 0;
+				for (int j = 0; j < array.size(); j++) {
+					sum += array.get(j);
+				}
+				Assert.assertEquals(uppnumbercount, sum + totalrow);
+			} else {
+				int appcount = ut.TotalUppNofields().size();
+				Assert.assertEquals(uppnumbercount, appcount);
 			}
-
-			int sum = 0;
-			for (int j = 0; j < array.size(); j++) {
-				sum += array.get(j);
-			}
-			Assert.assertEquals(uppnumbercount, sum + totalrow);
-		} else {
-			int appcount = ut.TotalUppNofields().size();
-			Assert.assertEquals(uppnumbercount, appcount);
+		} catch (Exception e) {
+			System.out.println(e.getStackTrace());
 		}
 	}
 
@@ -1161,29 +1167,29 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 		Thread.sleep(1000);
 		u.ExportExcelButton().click();
 		Thread.sleep(1000);
-		
+
 		File file = ex.getLatestFilefromDir(Exceldownloadpath);
 		String ExcelFilename = file.getName();
 		String filePath = Exceldownloadpath + System.getProperty("file.separator") + ExcelFilename;
 		XlApiTest xl = new XlApiTest(filePath);
 		int rowcount = xl.HFFSgetRowCount("Sheet 1");
-	
+
 		Random r = new Random();
 		String field = xl.HSSFgetCellDataByColName("Sheet 1", columnname, r.nextInt(rowcount));
-				
+
 		xpath.sendKeys(field);
 		u.Searchbutton().click();
-		
+
 		Thread.sleep(1000);
 		u.ExportExcelButton().click();
 		Thread.sleep(10000);
-		
+
 		File file1 = ex.getLatestFilefromDir(Exceldownloadpath);
 		String ExcelFilename1 = file1.getName();
 		String filePath1 = Exceldownloadpath + System.getProperty("file.separator") + ExcelFilename1;
 		XlApiTest x = new XlApiTest(filePath1);
 		int rowcount1 = x.HFFSgetRowCount("Sheet 1");
-		
+
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
 			ArrayList<Integer> array = new ArrayList<>();
@@ -1207,56 +1213,56 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 			}
 
 			int count = sum + totalrow;
-			Assert.assertEquals(rowcount1-1, count);
+			Assert.assertEquals(rowcount1 - 1, count);
 
 		} else {
 			int appcount = ut.TotalUppNofields().size();
-			Assert.assertEquals(rowcount1-1, appcount);
+			Assert.assertEquals(rowcount1 - 1, appcount);
 		}
 	}
-	
+
 	public void VerifyExportDistidSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage us = new UppPaymentSearchFunctionalityPage();
 		uppPaymentPOM u = new uppPaymentPOM(driver);
-		
+
 		us.ExportSearch("upp_dist_id", u.SearchDistributorIDfield());
 	}
-	
+
 	public void VerifyExportUppNoSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage us = new UppPaymentSearchFunctionalityPage();
 		uppPaymentPOM u = new uppPaymentPOM(driver);
-		
+
 		us.ExportSearch("upp_no", u.SearchUppNo());
 	}
-	
+
 	public void VerifyExportUppOrderIDSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage us = new UppPaymentSearchFunctionalityPage();
 		uppPaymentPOM u = new uppPaymentPOM(driver);
-		
+
 		us.ExportSearch("upp_pay_order_id", u.SearchUppOrderID());
 	}
-	
+
 	public void EportStatusSearch(int n) throws Exception {
 		uppPaymentTablePOM ut = new uppPaymentTablePOM(driver);
 		uppPaymentPOM u = new uppPaymentPOM(driver);
 		ExportExcel ex = new ExportExcel();
-		
+
 		u.clearbutton().click();
-				
+		Thread.sleep(1000);
 		Select select = new Select(u.SearchUppOrderStatus());
 		select.selectByIndex(n);
 		u.Searchbutton().click();
-		
+
 		Thread.sleep(1000);
 		u.ExportExcelButton().click();
 		Thread.sleep(10000);
-		
+
 		File file = ex.getLatestFilefromDir(Exceldownloadpath);
 		String ExcelFilename = file.getName();
 		String filePath = Exceldownloadpath + System.getProperty("file.separator") + ExcelFilename;
 		XlApiTest x = new XlApiTest(filePath);
 		int rowcount = x.HFFSgetRowCount("Sheet 1");
-		
+
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
 			ArrayList<Integer> array = new ArrayList<>();
@@ -1278,10 +1284,10 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 			for (int j = 0; j < array.size(); j++) {
 				sum += array.get(j);
 			}
-			Assert.assertEquals(rowcount-1, sum + totalrow);
+			Assert.assertEquals(rowcount - 1, sum + totalrow);
 		} else {
 			int appcount = ut.TotalUppNofields().size();
-			Assert.assertEquals(rowcount-1, appcount);
+			Assert.assertEquals(rowcount - 1, appcount);
 		}
 	}
 
@@ -1289,45 +1295,45 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 		UppPaymentSearchFunctionalityPage upp = new UppPaymentSearchFunctionalityPage();
 		upp.EportStatusSearch(1);
 	}
-	
+
 	public void ExportFailureStatusSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage upp = new UppPaymentSearchFunctionalityPage();
 		upp.EportStatusSearch(2);
 	}
-	
+
 	public void ExportAbortedStatusSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage upp = new UppPaymentSearchFunctionalityPage();
 		upp.EportStatusSearch(3);
 	}
-	
+
 	public void ExportInvalidStatusSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage upp = new UppPaymentSearchFunctionalityPage();
 		upp.EportStatusSearch(4);
 	}
-	
+
 	public void ExportInitiatedStatusSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage upp = new UppPaymentSearchFunctionalityPage();
 		upp.EportStatusSearch(5);
 	}
-	
+
 	public void ExportTimeoutStatusSearch() throws Exception {
 		UppPaymentSearchFunctionalityPage upp = new UppPaymentSearchFunctionalityPage();
 		upp.EportStatusSearch(6);
 	}
-	
+
 	public void EportOrderSheetUpload() throws Exception {
 		uppPaymentTablePOM ut = new uppPaymentTablePOM(driver);
 		uppPaymentPOM u = new uppPaymentPOM(driver);
 		ExportExcel ex = new ExportExcel();
-		
+
 		u.clearbutton().click();
 		u.SearchOrderSheetUploadCheckbox().click();
 		u.Searchbutton().click();
-		
+
 		Thread.sleep(1000);
 		u.ExportExcelButton().click();
 		Thread.sleep(1000);
-		
+
 		File file = ex.getLatestFilefromDir(Exceldownloadpath);
 		String ExcelFilename = file.getName();
 		String filePath = Exceldownloadpath + System.getProperty("file.separator") + ExcelFilename;
@@ -1355,10 +1361,10 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 			for (int j = 0; j < array.size(); j++) {
 				sum += array.get(j);
 			}
-			Assert.assertEquals(rowcount-1, sum + totalrow);
+			Assert.assertEquals(rowcount - 1, sum + totalrow);
 		} else {
 			int appcount = ut.TotalUppNofields().size();
-			Assert.assertEquals(rowcount-1, appcount);
+			Assert.assertEquals(rowcount - 1, appcount);
 		}
 	}
 

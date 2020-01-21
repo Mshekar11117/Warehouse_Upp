@@ -157,7 +157,7 @@ public class CreateOrderEditFlow extends SuperTestNG {
 		W.Lastviewbutton().click();
 		WebElement element = U.actualorderdeliverytat();
 		int legnth = driver.findElements(By.xpath("//div[@class='col-sm-2']")).size();
-		System.out.println("Length of the fields---"+legnth);
+		System.out.println("Length of the fields---" + legnth);
 		ArrayList<String> arrayvalue = new ArrayList<String>();
 		for (int i = 1; i <= legnth; i++) {
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -269,7 +269,7 @@ public class CreateOrderEditFlow extends SuperTestNG {
 		Thread.sleep(500);
 
 		String ActualOrderTAT = U.actualorderdeliverytat().getAttribute("value");
-		System.out.println("ActualTAT---"+ActualOrderTAT);
+		System.out.println("ActualTAT---" + ActualOrderTAT);
 		Assert.assertTrue(arrayvalue.contains(ActualOrderTAT));
 
 		String RemarkEdit = U.remarks().getAttribute("value");
@@ -908,8 +908,10 @@ public class CreateOrderEditFlow extends SuperTestNG {
 
 	public void EditflowVerifyWarehouses() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
+		HomepagePOM h = new HomepagePOM(driver);
 
 		int Whcount = C.Warehouseoptions().size();
+		int menusize = h.leftsidemenus().size();
 
 		ArrayList<String> names = new ArrayList<String>();
 		for (int i = 0; i < Whcount; i++) {
@@ -917,28 +919,48 @@ public class CreateOrderEditFlow extends SuperTestNG {
 			names.add(whnames);
 		}
 
-		int rowcount = Excel.getRowCount(xlPath, sheetname4);
-		for (int i = 0; i < rowcount; i++) {
-			String wh = Excel.getCellValue(xlPath, sheetname4, i, 1);
-			if (names.contains(wh)) {
+		if (menusize > 1) {
+			int rowcount = Excel.getRowCount(xlPath, sheetname4);
+			for (int i = 0; i < rowcount; i++) {
+				String wh = Excel.getCellValue(xlPath, sheetname4, i, 1);
+				if (names.contains(wh)) {
+					Assert.assertTrue(true);
+				} else {
+					Assert.assertTrue(false, "Following Warehouse name is missing---" + wh);
+				}
+			}
+		} else {
+			String wh = h.accesstext().getText();
+			String whnames = wh.substring(18);
+//			Which will remove 1st option from an Array List
+			names.remove(0);
+			if (names.contains(whnames)) {
 				Assert.assertTrue(true);
 			} else {
-				System.out.println("Following Warehouse name is missing---" + wh);
-				Assert.assertTrue(false);
+				Assert.assertTrue(false,
+						"Warehouse name is not matching with Warehouse Access in Home page left side menu");
 			}
-		}
 
+		}
 	}
 
 	public void EditflowWarehouseOptionSelect() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
+		HomepagePOM h = new HomepagePOM(driver);
 
+		int menusize = h.leftsidemenus().size();
 		int warehouse = C.Warehouseoptions().size();
-		Assert.assertEquals(warehouse, 6);
+
+		if (menusize > 1) {
+			Assert.assertEquals(warehouse, 6);
+
+		} else {
+			Assert.assertEquals(warehouse, 2);
+		}
+
 		Select select = new Select(C.Warehousedropdown());
 		int random = ThreadLocalRandom.current().nextInt(1, warehouse);
 		select.selectByIndex(random);
-
 	}
 
 	public void EditflowInvalidDispatchDTfromWH() {

@@ -121,10 +121,9 @@ public class WH_AhmedabadLogin extends SuperTestNG{
 		childTest = test.createNode("VerifyTitles");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the title name between Excel sheet and the application tables", ExtentColor.BLUE));
 		
-//		Commenting this issue as there is an issue to be fixed in `Total Valid Orders` numbers		
-//		S.exportexcel();
-//		childTest = test.createNode("Export Excel");
-//		childTest.log(Status.PASS, MarkupHelper.createLabel("Exporting excel sheet and verifying the count", ExtentColor.BLUE));
+		S.exportexcel();
+		childTest = test.createNode("Export Excel");
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Exporting excel sheet and verifying the count", ExtentColor.BLUE));
 				
 		S.exportPDF();
 		childTest = test.createNode("Export PDF");
@@ -138,8 +137,7 @@ public class WH_AhmedabadLogin extends SuperTestNG{
 		childTest = test.createNode("SelectRandompage");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Select the page randomly by clicking on Pagination", ExtentColor.BLUE));
 		
-//		Commenting Search functionality as we have issue to be fixed
-		/*S.OrderNumberfield();
+		S.OrderNumberfield();
 		childTest = test.createNode("OrderNumberfield");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Searching Order ID randomly and clearing the field", ExtentColor.BLUE));
 				
@@ -189,7 +187,7 @@ public class WH_AhmedabadLogin extends SuperTestNG{
 				
 		S.Deleteorder();
 		childTest = test.createNode("Deleteorder");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Select order randomly to delete order and verify the message", ExtentColor.BLUE));*/
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Select order randomly to delete order and verify the message", ExtentColor.BLUE));
 		
 		CR.AccessingCreateOrder();
 		childTest = test.createNode("AccessingCreateOrder");
@@ -436,18 +434,17 @@ public class WH_AhmedabadLogin extends SuperTestNG{
 		childTest = test.createNode("MandatoryFieldsEditflow");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Update flow - Verify the number of Mandatory fields in Create Order Edit flow", ExtentColor.BLUE));
 		
-		CD.EditflowSaleTypeoption();
-		childTest = test.createNode("EditflowSaleTypeoption");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Update flow - Verifying the optoin Sale Type in Create Order Edit flow", ExtentColor.BLUE));
-		
-//		Commenting this as we have an issue in Edit flow where developer has to fix it
-//		CD.EditflowVerifyOrdernofielderrormessage();
-//		childTest = test.createNode("EditflowVerifyOrdernofielderrormessage");
-//		childTest.log(Status.PASS, MarkupHelper.createLabel("Update flow - Verify the Order Number field Error messages for the invalid values in Edit flow", ExtentColor.BLUE));
+		CD.EditflowVerifyOrdernofielderrormessage();
+		childTest = test.createNode("EditflowVerifyOrdernofielderrormessage");
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Update flow - Verify the Order Number field Error messages for the invalid values in Edit flow", ExtentColor.BLUE));
 
 		CD.EditflowValidordernofiled();
 		childTest = test.createNode("EditflowValidordernofiled");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Update flow - Passing valid order number and verifying application should not display error message in Edit flow", ExtentColor.BLUE));
+				
+		CD.EditflowSaleTypeoption();
+		childTest = test.createNode("EditflowSaleTypeoption");
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Update flow - Verifying the optoin Sale Type in Create Order Edit flow", ExtentColor.BLUE));
 		
 		CD.EditflowInvalidInvoiceNo();
 		childTest = test.createNode("EditflowInvalidInvoiceNo");
@@ -657,7 +654,7 @@ public class WH_AhmedabadLogin extends SuperTestNG{
 		cm.CompareExcel();
 		childTest = test.createNode("CompareExcel");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Compare between Excel Exported and Excel pushed Applicaiton value", ExtentColor.BLUE));
-					
+				
 		L.logout();
 		childTest = test.createNode("Logout function");
 		childTest.info("Closing the session by Logout");

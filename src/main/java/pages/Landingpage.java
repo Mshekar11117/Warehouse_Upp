@@ -49,6 +49,16 @@ public class Landingpage extends SuperTestNG {
 		Assert.assertEquals(url, prop.getProperty("homepageurl"));
 	}
 	
+	public void UppLogin() {
+		LandingpagePOM L = new LandingpagePOM(driver);
+		L.getusername().isDisplayed();
+		L.getusername().sendKeys(Excel.getCellValue(xlPath, sheetName, 9, 0));
+		L.getpassword().sendKeys(Excel.getCellValue(xlPath, sheetName, 9, 1));
+		L.getLoginbutton().click();
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url, prop.getProperty("upppaymentsurl"));
+	}
+	
 	public void logout() throws Exception {
 		HomepagePOM H = new HomepagePOM(driver);
 		Thread.sleep(1000);

@@ -228,7 +228,7 @@ public class Userspage extends SuperTestNG {
 		U.passwordfield().sendKeys(prop.getProperty("password"));
 		U.confirmpassword().sendKeys(prop.getProperty("password"));
 		U.mobilefiled().clear();
-		U.mobilefiled().sendKeys(genData.generateRandomNumber(10));
+		U.mobilefiled().sendKeys(genData.generateRandomNumber(20));
 		U.Savebutton().click();
 		Assert.assertEquals(driver.getCurrentUrl(), prop.getProperty("usersURL"));
 		

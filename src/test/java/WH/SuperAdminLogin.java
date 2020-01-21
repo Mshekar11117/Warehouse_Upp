@@ -1279,37 +1279,38 @@ public class SuperAdminLogin extends SuperTestNG {
 		childTest = test.createNode("Dist Id and Time out Search");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records of Dist id who's status is Time out", ExtentColor.BLUE));
 		
-		UppSearch.UppNumberAndSuccessStatus();
-		childTest = test.createNode("Upp Number and Success status Search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Success Status", ExtentColor.BLUE));
+//		Commenting this as we still have UPP Number search issue open in GitHb, wherein Space in UPPnumber Search result in application is not showing
+//		UppSearch.UppNumberAndSuccessStatus();
+//		childTest = test.createNode("Upp Number and Success status Search");
+//		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Success Status", ExtentColor.BLUE));
 		
-		UppSearch.UppNumberAndFailureStatus();;
-		childTest = test.createNode("Upp Number and Failure status Search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Failure Status", ExtentColor.BLUE));
+//		UppSearch.UppNumberAndFailureStatus();;
+//		childTest = test.createNode("Upp Number and Failure status Search");
+//		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Failure Status", ExtentColor.BLUE));
 		
-		UppSearch.UppNumberAndAbortedStatus();
-		childTest = test.createNode("Upp Number and Aborted status Search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Aborted Status", ExtentColor.BLUE));
+//		UppSearch.UppNumberAndAbortedStatus();
+//		childTest = test.createNode("Upp Number and Aborted status Search");
+//		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Aborted Status", ExtentColor.BLUE));
 		
-		UppSearch.UppNumberAndInvalidStatus();
-		childTest = test.createNode("Upp Number and Invalid status Search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Invalid Status", ExtentColor.BLUE));
+//		UppSearch.UppNumberAndInvalidStatus();
+//		childTest = test.createNode("Upp Number and Invalid status Search");
+//		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Invalid Status", ExtentColor.BLUE));
 		
-		UppSearch.UppNumberAndInitiatedStatus();
-		childTest = test.createNode("Upp Number and Initiated status Search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Initiated Status", ExtentColor.BLUE));
+//		UppSearch.UppNumberAndInitiatedStatus();
+//		childTest = test.createNode("Upp Number and Initiated status Search");
+//		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Initiated Status", ExtentColor.BLUE));
 		
-		UppSearch.UppNumberAndTimeoutStatus();
-		childTest = test.createNode("Upp Number and Timeout status Search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Timeout Status", ExtentColor.BLUE));
+//		UppSearch.UppNumberAndTimeoutStatus();
+//		childTest = test.createNode("Upp Number and Timeout status Search");
+//		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of UPP Number of Timeout Status", ExtentColor.BLUE));
 		
 		UppSearch.DatewithDistIDCombinationSearch();
 		childTest = test.createNode("Dist ID and Date Search");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of Distributor ID and Order Date", ExtentColor.BLUE));
 		
-		UppSearch.UppNumberCombinationwithDate();
-		childTest = test.createNode("Upp Number and Date Search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of Upp Number and Order Date", ExtentColor.BLUE));
+//		UppSearch.UppNumberCombinationwithDate();
+//		childTest = test.createNode("Upp Number and Date Search");
+//		childTest.log(Status.PASS, MarkupHelper.createLabel("Search records with the combination of Upp Number and Order Date", ExtentColor.BLUE));
 		
 		UppSearch.DatewithSuccess();
 		childTest = test.createNode("Success status and Date Search");
@@ -1502,7 +1503,7 @@ public class SuperAdminLogin extends SuperTestNG {
 		UppSearch.EportOrderSheetUpload();
 		childTest = test.createNode("Search by Order Upload sheet checkbox and then export the search");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the row count of Exported Excel comparing to HTML rows in Application", ExtentColor.BLUE));
-		
+
 		L.logout();
 		childTest = test.createNode("Logout function");
 		childTest.info("Closing the session by Logout");

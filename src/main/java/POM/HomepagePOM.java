@@ -32,6 +32,9 @@ public class HomepagePOM extends SuperTestNG{
 	@FindBy(xpath="//div[@class='warehouse_access']/strong")
 	WebElement whaccess;
 	
+	@FindBy(xpath="/html/body/div[1]/div/div[1]/div/div[3]/div[3]/text()")
+	WebElement WarehouseAccessplaces;
+	
 	@FindBy(xpath="//div[@class='profile_info']/span")
 	WebElement welcomtext;
 	
@@ -130,6 +133,10 @@ public class HomepagePOM extends SuperTestNG{
 	
 	public WebElement whaccess() {
 		return whaccess;
+	}
+	
+	public WebElement WarehouseAccessplaces() {
+		return WarehouseAccessplaces;
 	}
 	
 	public List<WebElement> leftsidemenus() {

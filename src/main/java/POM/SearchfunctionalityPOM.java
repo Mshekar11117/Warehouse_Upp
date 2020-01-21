@@ -94,6 +94,9 @@ public class SearchfunctionalityPOM extends SuperTestNG{
 	@FindBy(xpath="//div[contains(text(), 'Valid')]")
 	WebElement numberofentries;
 	
+	/*@FindBy(css=".row > div >b")
+	WebElement numberofentries;*/
+	
 	@FindBy(css="div#searcherror")
 	WebElement searcherror;
 	
