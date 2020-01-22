@@ -4,16 +4,18 @@
 
 	<listeners>
 		<!-- <listener class-name="resources.listeners"></listener> -->
-
 		<!-- By Implementing TestNG IRetryAnalyzer. -->
-		<!--  <listener class-name="utilities.RetryListenerClass"></listener> -->
+		<!-- <listener class-name="utilities.RetryListenerClass"></listener> -->
 	</listeners>
 
-	<test name="Test">
+	<test name="Chrome Test">
 		<classes>
-			<class name="WH.CommonLogin" />  
+			<class name="WH.CommonLogin" />
 			<class name="WH.SuperAdminLogin" />
-					
+			<class name="WH.AdminLogin" />
+			<class name="WH.UppLogin" />
+			<class name="WH.WH_AhmedabadLogin"/>
+			<class name="WH.CustomerCareLogin"/>
 		</classes>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	</test>
+</suite>

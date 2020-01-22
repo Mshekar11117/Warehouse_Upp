@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WH.SuperAdminLogin">
+      <class name="WH.CustomerCareLogin">
         <methods>
+          <include name="customercare"/>
           <include name="closebrowser"/>
           <include name="initialization"/>
-          <include name="SuperAdminflow"/>
           <include name="StartReport"/>
         </methods>
-      </class> <!-- WH.SuperAdminLogin -->
+      </class> <!-- WH.CustomerCareLogin -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

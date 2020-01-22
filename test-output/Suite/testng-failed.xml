@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="4" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="tests">
-  <test thread-count="4" name="Test(failed)" parallel="tests">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="tests">
+  <test thread-count="5" name="Test(failed)" parallel="tests">
     <classes>
+      <class name="WH.Upp_Login">
+        <methods>
+          <include name="UPP"/>
+          <include name="closebrowser"/>
+          <include name="initialization"/>
+          <include name="StartReport"/>
+        </methods>
+      </class> <!-- WH.Upp_Login -->
       <class name="WH.SuperAdminLogin">
         <methods>
           <include name="closebrowser"/>
@@ -11,6 +19,45 @@
           <include name="StartReport"/>
         </methods>
       </class> <!-- WH.SuperAdminLogin -->
+      <class name="pages.Extras">
+        <methods>
+          <include name="close"/>
+          <include name="verify"/>
+          <include name="open"/>
+        </methods>
+      </class> <!-- pages.Extras -->
+      <class name="WH.WH_AhmedabadLogin">
+        <methods>
+          <include name="closebrowser"/>
+          <include name="initialization"/>
+          <include name="AhmedabadWarehouseflow"/>
+          <include name="StartReport"/>
+        </methods>
+      </class> <!-- WH.WH_AhmedabadLogin -->
+      <class name="WH.AdminLogin">
+        <methods>
+          <include name="SuperAdminflow"/>
+          <include name="closebrowser"/>
+          <include name="initialization"/>
+          <include name="StartReport"/>
+        </methods>
+      </class> <!-- WH.AdminLogin -->
+      <class name="WH.CommonLogin">
+        <methods>
+          <include name="closebrowser"/>
+          <include name="initialization"/>
+          <include name="commonflow"/>
+          <include name="StartReport"/>
+        </methods>
+      </class> <!-- WH.CommonLogin -->
+      <class name="WH.CustomerCareLogin">
+        <methods>
+          <include name="customercare"/>
+          <include name="closebrowser"/>
+          <include name="initialization"/>
+          <include name="StartReport"/>
+        </methods>
+      </class> <!-- WH.CustomerCareLogin -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

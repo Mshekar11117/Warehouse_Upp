@@ -429,7 +429,7 @@ public class Searchfunctionality extends SuperTestNG {
 				WebElement page = driver.findElement(By.xpath("//ul[@class='pagination']/li[" + i + "]/a"));
 				wait.until(ExpectedConditions.elementToBeClickable(page));
 				page.click();
-				rcount += T.Actionedits().size();
+				rcount += T.Actionviews().size();
 			}
 		}
 
