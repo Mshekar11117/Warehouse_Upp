@@ -62,7 +62,7 @@ public class Userspage extends SuperTestNG {
 
 	}
 
-	public void createuservalidations() {
+	public void createuservalidations() throws InterruptedException {
 		UserspagePOM U = new UserspagePOM(driver);
 		TablesPOM T = new TablesPOM(driver);
 
@@ -95,10 +95,11 @@ public class Userspage extends SuperTestNG {
 		U.namefield().sendKeys(genData.generateRandomNumber(5));
 		U.Savebutton().click();
 		Assert.assertTrue(U.InvlidNameErrorMessage().isDisplayed());
-		
+		Thread.sleep(1000);
 		U.emailfield().sendKeys(genData.generateRandomString(10));
 		U.Savebutton().click();
 		Assert.assertTrue(U.InvalidEmailErrorMessage().isDisplayed());
+		
 		U.emailfield().clear();
 		U.emailfield().sendKeys(prop.getProperty("existingemail"));
 		U.Savebutton().click();
@@ -122,7 +123,7 @@ public class Userspage extends SuperTestNG {
 		UserspagePOM U = new UserspagePOM(driver);
 		int count = 0;
 		int length = U.WhselectOptions().size();
-		String[] wh = { "Bangalore", "Guwahati", "Bhiwandi", "Ahmedabad", "Gurgaon" };
+		String[] wh = { "Bangalore", "Guwahati", "Bhiwandi", "Ahmedabad", "Gurgaon", "Raipur" };
 
 		WebElement dropdown = U.WarehousesSelect();
 		Select select = new Select(dropdown);

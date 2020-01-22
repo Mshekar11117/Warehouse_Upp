@@ -31,11 +31,81 @@ import POM.HomepagePOM;
 import POM.ModalPOM;
 import POM.PaginationPOM;
 import POM.SearchfunctionalityPOM;
+import POM.UppMakePaymentPOM;
 import POM.WHTablesPOM;
+import POM.uppPaymentPOM;
 import base.SuperTestNG;
 import POM.ViewOrdersPOM;
 
 public class Searchfunctionality extends SuperTestNG {
+
+	public void Searchoptions() {
+		HomepagePOM H = new HomepagePOM(driver);
+		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
+		UppMakePaymentPOM upp = new UppMakePaymentPOM(driver);
+		uppPaymentPOM u = new uppPaymentPOM(driver);
+
+		int menucount = H.leftsidemenus().size();
+
+		if (menucount == 10) {
+			Assert.assertTrue(H.SendSMSbutton().isDisplayed());
+			Assert.assertTrue(H.ImportOrder().isDisplayed());
+			Assert.assertTrue(H.CreateOrder().isDisplayed());
+			Assert.assertTrue(S.orderno().isDisplayed());
+			Assert.assertTrue(S.DistributorID().isDisplayed());
+			Assert.assertTrue(S.Warehousedropwdownselect().isDisplayed());
+			Assert.assertTrue(S.Saletype().isDisplayed());
+			Assert.assertTrue(S.Datefield().isDisplayed());
+			Assert.assertTrue(S.FromDate().isDisplayed());
+			Assert.assertTrue(S.ToDate().isDisplayed());
+			Assert.assertTrue(S.DistributorNamefield().isDisplayed());
+			Assert.assertTrue(S.DistributorPhone().isDisplayed());
+			Assert.assertTrue(S.ExportExcel().isDisplayed());
+			Assert.assertTrue(S.ExportPDF().isDisplayed());
+			Assert.assertTrue(S.Searchbutton().isDisplayed());
+			Assert.assertTrue(S.Resetbutton().isDisplayed());
+		} else if (menucount == 2) {
+			Assert.assertTrue(upp.MakePaymentButton().isDisplayed());
+			Assert.assertTrue(u.SearchDistributorIDfield().isDisplayed());
+			Assert.assertTrue(u.SearchUppNo().isDisplayed());
+			Assert.assertTrue(u.SearchUppOrderID().isDisplayed());
+			Assert.assertTrue(u.SearchUppOrderStatus().isDisplayed());
+			Assert.assertTrue(u.SearchUppOrderdate().isDisplayed());
+			Assert.assertTrue(u.SearchOrderSheetUploadCheckbox().isDisplayed());
+			Assert.assertTrue(u.ExportExcelButton().isDisplayed());
+			Assert.assertTrue(u.Searchbutton().isDisplayed());
+			Assert.assertTrue(u.clearbutton().isDisplayed());
+		} else if (menucount == 3) {
+			Assert.assertTrue(S.orderno().isDisplayed());
+			Assert.assertTrue(S.DistributorID().isDisplayed());
+			Assert.assertTrue(S.Warehousedropwdownselect().isDisplayed());
+			Assert.assertTrue(S.Saletype().isDisplayed());
+			Assert.assertTrue(S.Datefield().isDisplayed());
+			Assert.assertTrue(S.FromDate().isDisplayed());
+			Assert.assertTrue(S.ToDate().isDisplayed());
+			Assert.assertTrue(S.DistributorNamefield().isDisplayed());
+			Assert.assertTrue(S.DistributorPhone().isDisplayed());
+			Assert.assertTrue(S.ExportExcel().isDisplayed());
+			Assert.assertTrue(S.ExportPDF().isDisplayed());
+			Assert.assertTrue(S.Searchbutton().isDisplayed());
+			Assert.assertTrue(S.Resetbutton().isDisplayed());
+		} else {
+			Assert.assertTrue(H.ImportOrder().isDisplayed());
+			Assert.assertTrue(H.CreateOrder().isDisplayed());
+			Assert.assertTrue(S.orderno().isDisplayed());
+			Assert.assertTrue(S.DistributorID().isDisplayed());
+			Assert.assertTrue(S.Saletype().isDisplayed());
+			Assert.assertTrue(S.Datefield().isDisplayed());
+			Assert.assertTrue(S.FromDate().isDisplayed());
+			Assert.assertTrue(S.ToDate().isDisplayed());
+			Assert.assertTrue(S.DistributorNamefield().isDisplayed());
+			Assert.assertTrue(S.DistributorPhone().isDisplayed());
+			Assert.assertTrue(S.ExportExcel().isDisplayed());
+			Assert.assertTrue(S.ExportPDF().isDisplayed());
+			Assert.assertTrue(S.Searchbutton().isDisplayed());
+			Assert.assertTrue(S.Resetbutton().isDisplayed());
+		}
+	}
 
 	public void verifySearchTitles() {
 		SearchfunctionalityPOM S = new SearchfunctionalityPOM(driver);
@@ -636,14 +706,14 @@ public class Searchfunctionality extends SuperTestNG {
 
 		wait.until(ExpectedConditions.invisibilityOf(M.RecordModal()));
 		first.click();
-		
+
 		if (checkboxes > 1) {
 			second.click();
 			remove.click();
 			M.RecordModalcancelbutton().click();
 			wait.until(ExpectedConditions.invisibilityOf(M.RecordModal()));
 		}
-		
+
 		S.Resetbutton().click();
 		Random r = new Random();
 		int count = r.nextInt(checkboxes);
