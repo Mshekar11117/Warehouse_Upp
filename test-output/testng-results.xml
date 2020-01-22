@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="880233" started-at="2020-01-22T12:37:38Z" finished-at="2020-01-22T12:52:18Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="880233" started-at="2020-01-22T12:37:38Z" finished-at="2020-01-22T12:52:18Z">
+      <class name="WH.WH_BangaloreLogin">
+        <test-method status="PASS" signature="StartReport()[pri:0, instance:WH.WH_BangaloreLogin@402a079c]" name="StartReport" is-config="true" duration-ms="203" started-at="2020-01-22T12:37:38Z" finished-at="2020-01-22T12:37:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StartReport -->
+        <test-method status="PASS" signature="initialization()[pri:0, instance:WH.WH_BangaloreLogin@402a079c]" name="initialization" is-config="true" duration-ms="13266" started-at="2020-01-22T12:37:38Z" finished-at="2020-01-22T12:37:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method status="PASS" signature="BangaloreWarehouseflow()[pri:0, instance:WH.WH_BangaloreLogin@402a079c]" name="BangaloreWarehouseflow" duration-ms="866091" started-at="2020-01-22T12:37:51Z" finished-at="2020-01-22T12:52:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BangaloreWarehouseflow -->
+        <test-method status="PASS" signature="closebrowser(org.testng.ITestResult)[pri:0, instance:WH.WH_BangaloreLogin@402a079c]" name="closebrowser" is-config="true" duration-ms="651" started-at="2020-01-22T12:52:17Z" finished-at="2020-01-22T12:52:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=BangaloreWarehouseflow status=SUCCESS method=WH_BangaloreLogin.BangaloreWarehouseflow()[pri:0, instance:WH.WH_BangaloreLogin@402a079c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closebrowser -->
+      </class> <!-- WH.WH_BangaloreLogin -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
