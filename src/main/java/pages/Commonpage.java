@@ -80,11 +80,11 @@ public class Commonpage extends SuperTestNG {
 	}
 	
 	public static List<WebElement> findAllLinks(WebDriver driver) {
-		List<WebElement> elementList = new ArrayList<>();
+		List<WebElement> elementList = new ArrayList<WebElement>();
 		elementList = driver.findElements(By.tagName("a"));
 		elementList.addAll(driver.findElements(By.tagName("img")));
 		
-		List<WebElement> finalList  = new ArrayList<>();
+		List<WebElement> finalList  = new ArrayList<WebElement>();
 		for(WebElement element : elementList) {
 			if(element.getAttribute("href")!=null) {
 				finalList.add(element);

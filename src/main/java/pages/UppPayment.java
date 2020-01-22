@@ -64,7 +64,7 @@ public class UppPayment extends SuperTestNG {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 
 		int length = ut.NumberofPagination().size();
-		ArrayList<Integer> array = new ArrayList<>();
+		ArrayList<Integer> array = new ArrayList<Integer>();
 		int totalrow = ut.TotalNumberofRow().size();
 //		push the row numbers in to array using ArrayList		
 		for (int i = 3; i < length; i++) {

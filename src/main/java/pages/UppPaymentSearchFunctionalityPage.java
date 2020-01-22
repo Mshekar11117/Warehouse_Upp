@@ -102,7 +102,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -180,7 +180,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -252,7 +252,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -331,7 +331,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -415,7 +415,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -470,7 +470,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -525,7 +525,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -580,7 +580,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -635,7 +635,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -690,7 +690,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -756,7 +756,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -852,7 +852,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 			if (ut.NumberofPagination().size() > 0) {
 				int length = ut.NumberofPagination().size();
-				ArrayList<Integer> array = new ArrayList<>();
+				ArrayList<Integer> array = new ArrayList<Integer>();
 				int totalrow = ut.TotalNumberofRow().size();
 
 				JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -958,7 +958,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1031,7 +1031,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1102,7 +1102,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1192,7 +1192,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1265,7 +1265,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1342,7 +1342,7 @@ public class UppPaymentSearchFunctionalityPage extends SuperTestNG {
 
 		if (ut.NumberofPagination().size() > 0) {
 			int length = ut.NumberofPagination().size();
-			ArrayList<Integer> array = new ArrayList<>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			int totalrow = ut.TotalNumberofRow().size();
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;

@@ -206,7 +206,7 @@ public class Countries extends SuperTestNG {
 		
 
 //			Printing ISO code of Selected country
-		Map<String, String> country = new HashMap<>();
+		Map<String, String> country = new HashMap<String, String>();
 		for (String iso : Locale.getISOCountries()) {
 			Locale l = new Locale("", iso);
 			country.put(l.getDisplayCountry(), iso);
