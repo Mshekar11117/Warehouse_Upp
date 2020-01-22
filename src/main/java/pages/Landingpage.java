@@ -49,6 +49,56 @@ public class Landingpage extends SuperTestNG {
 		Assert.assertEquals(url, prop.getProperty("homepageurl"));
 	}
 	
+	public void Bhiwandiuser() {
+		LandingpagePOM L = new LandingpagePOM(driver);
+		L.getusername().isDisplayed();
+		L.getusername().sendKeys(Excel.getCellValue(xlPath, sheetName, 5, 0));
+		L.getpassword().sendKeys(Excel.getCellValue(xlPath, sheetName, 5, 1));
+		L.getLoginbutton().click();
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url, prop.getProperty("homepageurl"));
+	}
+		
+	public void Bangaloreuser() {
+		LandingpagePOM L = new LandingpagePOM(driver);
+		L.getusername().isDisplayed();
+		L.getusername().sendKeys(Excel.getCellValue(xlPath, sheetName, 6, 0));
+		L.getpassword().sendKeys(Excel.getCellValue(xlPath, sheetName, 6, 1));
+		L.getLoginbutton().click();
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url, prop.getProperty("homepageurl"));
+	}
+	
+	public void Gurgaonuser() {
+		LandingpagePOM L = new LandingpagePOM(driver);
+		L.getusername().isDisplayed();
+		L.getusername().sendKeys(Excel.getCellValue(xlPath, sheetName, 7, 0));
+		L.getpassword().sendKeys(Excel.getCellValue(xlPath, sheetName, 7, 1));
+		L.getLoginbutton().click();
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url, prop.getProperty("homepageurl"));
+	}
+	
+	public void Guwahatiuser() {
+		LandingpagePOM L = new LandingpagePOM(driver);
+		L.getusername().isDisplayed();
+		L.getusername().sendKeys(Excel.getCellValue(xlPath, sheetName, 8, 0));
+		L.getpassword().sendKeys(Excel.getCellValue(xlPath, sheetName, 8, 1));
+		L.getLoginbutton().click();
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url, prop.getProperty("homepageurl"));
+	}
+	
+	public void Raipuruser() {
+		LandingpagePOM L = new LandingpagePOM(driver);
+		L.getusername().isDisplayed();
+		L.getusername().sendKeys(Excel.getCellValue(xlPath, sheetName, 10, 0));
+		L.getpassword().sendKeys(Excel.getCellValue(xlPath, sheetName, 10, 1));
+		L.getLoginbutton().click();
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url, prop.getProperty("homepageurl"));
+	}
+	
 	public void UppLogin() {
 		LandingpagePOM L = new LandingpagePOM(driver);
 		L.getusername().isDisplayed();
