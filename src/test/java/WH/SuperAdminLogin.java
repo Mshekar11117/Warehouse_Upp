@@ -380,7 +380,7 @@ public class SuperAdminLogin extends SuperTestNG {
 		childTest = test.createNode("Deletepermission");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Delete Permission using Delete function", ExtentColor.BLUE));
 				
-		W.AccessingRolesPage();
+		W.AccessingWarehousePage();
 		childTest = test.createNode("AccessingRolesPage");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Accessing Warehouses page and verifying page text and URL", ExtentColor.BLUE));
 				

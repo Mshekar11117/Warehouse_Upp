@@ -32,9 +32,17 @@ public class EscalationMailPage extends SuperTestNG{
 		childTest = test.createNode("Verify profile username");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the username between Nav bar riht side and user profile", ExtentColor.BLUE));
 		
+		E.ChangethreeDayAndStatus();
+		childTest = test.createNode("Change the date to 3 days");
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Change the date to get 3 days and change the status of first 2 orders", ExtentColor.BLUE));
+		
+		E.ChangefourDayAndStatus();
+		childTest = test.createNode("Change the date of 4 days");
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Change the date to get 4 days and change the status of 3rd and 4th orders", ExtentColor.BLUE));
+		
 		E.EscalationDaysCount();
-		childTest = test.createNode("Verify profile username");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the username between Nav bar riht side and user profile", ExtentColor.BLUE));
+		childTest = test.createNode("Get the days difference");
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Compare the days count and verify with Esclation URL", ExtentColor.BLUE));
 		
 	}
 

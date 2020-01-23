@@ -21,7 +21,7 @@ import utilities.Excel;
 
 public class WarehousesPage extends SuperTestNG {
 
-	public void AccessingRolesPage() {
+	public void AccessingWarehousePage() {
 		HomepagePOM H = new HomepagePOM(driver);
 		TablesPOM T = new TablesPOM(driver);
 
@@ -58,15 +58,29 @@ public class WarehousesPage extends SuperTestNG {
 		TablesPOM T = new TablesPOM(driver);
 
 		int rcount = T.tablerows().size();
+		int pagination = P.numberpagination().size();
+		
+		if (pagination > 0) {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 
-		while (P.numberpagination().size() > 0) {
+			for (int i = 3; i < pagination; i++) {
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				WebElement page = driver.findElement(By.xpath("//ul[@class='pagination']/li[" + i + "]/a"));
+				wait.until(ExpectedConditions.elementToBeClickable(page));
+				page.click();
+				rcount += T.tablerows().size();
+			}
+		}
+
+	/*	while (P.numberpagination().size() > 0) {
 			if (P.nextpage().size() > 0) {
 				P.nextarrow().click();
 				rcount += T.tablerows().size();
 			} else {
 				break;
 			}
-		}
+		}*/
 
 		Assert.assertEquals(rcount, Integer.parseInt(prop.getProperty("WarehousesCount")));
 	}
@@ -169,11 +183,12 @@ public class WarehousesPage extends SuperTestNG {
 
 	}
 
-	public void VerifyErrorMessages() {
+	public void VerifyErrorMessages() throws Exception {
 		WarehousesPOM W = new WarehousesPOM(driver);
 		TablesPOM T = new TablesPOM(driver);
 
 		T.Createbutton().click();
+		Thread.sleep(1000);
 		W.Savebutton().click();
 
 		Assert.assertTrue(W.ErrorMessages().isDisplayed());
@@ -228,7 +243,7 @@ public class WarehousesPage extends SuperTestNG {
 		UserspagePOM U = new UserspagePOM(driver);
 
 		int count = T.tablerows().size();
-		Assert.assertEquals(count, 6);
+		Assert.assertEquals(count, 7);
 
 		U.Updatelastbutton().click();
 		W.UpdateCancelButton().click();

@@ -102,6 +102,9 @@ public class UpdateOrderPOM extends SuperTestNG {
 	@FindBy(xpath="//select[@id='status']/option[@selected]")
 	WebElement Status;
 	
+	@FindBy(xpath="//select[@id='status']")
+	WebElement SelectStatus;
+	
 	@FindBy(name="ds_team_order_sent_to_wh_tat_days")
 	WebElement dsteamordersenttowhtatdays;
 	
@@ -241,6 +244,10 @@ public class UpdateOrderPOM extends SuperTestNG {
 	
 	public WebElement Status() {
 		return Status;
+	}
+	
+	public WebElement SelectStatus() {
+		return SelectStatus;
 	}
 	
 	public WebElement dsteamordersenttowhtatdays() {
