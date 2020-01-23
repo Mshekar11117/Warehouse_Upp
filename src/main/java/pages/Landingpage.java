@@ -8,6 +8,18 @@ import base.SuperTestNG;
 import utilities.Excel;
 
 public class Landingpage extends SuperTestNG {
+	
+	public void LIVESuperAdminlogin() throws Exception {
+		LandingpagePOM L = new LandingpagePOM(driver);
+		L.getusername().isDisplayed();
+		L.getusername().sendKeys(prop.getProperty("username"));
+		L.getpassword().sendKeys(prop.getProperty("password"));
+		Thread.sleep(1000);
+		L.getLoginbutton().click();
+		Thread.sleep(1000);
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url, prop.getProperty("homepageurl"));
+	}
 
 	public void SuperAdminlogin() throws Exception {
 		LandingpagePOM L = new LandingpagePOM(driver);

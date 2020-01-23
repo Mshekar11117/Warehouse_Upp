@@ -7,15 +7,29 @@
 		<!-- By Implementing TestNG IRetryAnalyzer. -->
 		<!-- <listener class-name="utilities.RetryListenerClass"></listener> -->
 	</listeners>
-
-	<test name="Chrome Test">
+	
+	<test name="QA Environment Test Cases">
+	<parameter name="url" value="https://india.unicityportal.com/test_warehouseorder/auth/login" />
 		<classes>
 			<class name="WH.CommonLogin" />
 			<class name="WH.SuperAdminLogin" />
 			<class name="WH.AdminLogin" />
 			<class name="WH.UppLogin" />
 			<class name="WH.WH_AhmedabadLogin"/>
+			<class name="WH.WH_BangaloreLogin"/>
+			<class name="WH.WH_BhiwandiLogin"/>
+			<class name="WH.WH_GurgaonLogin"/>
+			<class name="WH.WH_GuwahatiLogin"/>
+			<class name="WH.WH_RaipurLogin"/>
 			<class name="WH.CustomerCareLogin"/>
+			<class name="WH.EscalationMailPage"/>
+		</classes>
+	</test>
+	
+	<test name="Production Environment Test Cases">
+	<parameter name="url" value="https://india.unicityportal.com/warehouseorder/auth/login" />
+		<classes>
+			
 		</classes>
 	</test>
 </suite>

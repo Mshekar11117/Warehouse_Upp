@@ -27,6 +27,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -96,8 +97,9 @@ public class SuperTestNG {
 		htmlreport.config().setTheme(Theme.STANDARD);
 	}
 
+	@Parameters({"url"})
 	@BeforeMethod
-	public void initialization() throws Exception {
+	public void initialization(String url) throws Exception {
 		genData = new GenerateData();
 
 		File f = new File("src\\main\\java\\Resources\\data.properties");
@@ -145,7 +147,7 @@ public class SuperTestNG {
 		}
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get(prop.getProperty("url"));
+		driver.get(url);
 	}
 	
 	public boolean isElementPresent(By by) {
@@ -188,7 +190,7 @@ public class SuperTestNG {
 					MarkupHelper.createLabel(result.getName() + " Test Case SKIPPED", ExtentColor.ORANGE));
 			childTest.skip(result.getThrowable());
 		}
-//		driver.quit();
+		driver.quit();
 		extent.flush();
 	}
 }

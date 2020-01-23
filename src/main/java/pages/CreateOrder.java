@@ -783,7 +783,7 @@ public class CreateOrder extends SuperTestNG {
 		System.out.println("Warehuouse drop donw options--"+warehouse);
 		int menucont = H.leftsidemenus().size();
 		if (menucont == Integer.parseInt(prop.getProperty("Superadminmenucount"))) {
-			Assert.assertEquals(warehouse, 6);
+			Assert.assertEquals(warehouse, 7);
 			Select select = new Select(C.Warehousedropdown());
 			int random = ThreadLocalRandom.current().nextInt(1, warehouse);
 			select.selectByIndex(random);
