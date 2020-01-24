@@ -1,5 +1,7 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import POM.HomepagePOM;
@@ -11,14 +13,12 @@ public class Landingpage extends SuperTestNG {
 	
 	public void LIVESuperAdminlogin() throws Exception {
 		LandingpagePOM L = new LandingpagePOM(driver);
-		L.getusername().isDisplayed();
-		L.getusername().sendKeys(prop.getProperty("username"));
-		L.getpassword().sendKeys(prop.getProperty("password"));
-		Thread.sleep(1000);
+		L.getusername().sendKeys(prop.getProperty("superusername"));
+		L.getpassword().sendKeys(prop.getProperty("superpassword"));
 		L.getLoginbutton().click();
 		Thread.sleep(1000);
 		String url = driver.getCurrentUrl();
-		Assert.assertEquals(url, prop.getProperty("homepageurl"));
+		Assert.assertEquals(url, prop.getProperty("Livehomepageurl"));
 	}
 
 	public void SuperAdminlogin() throws Exception {
