@@ -780,7 +780,7 @@ public class CreateOrder extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 
 		int warehouse = C.Warehouseoptions().size();
-		System.out.println("Warehuouse drop donw options--"+warehouse);
+		System.out.println("Warehuouse drop down options--"+warehouse);
 		int menucont = H.leftsidemenus().size();
 		if (menucont == Integer.parseInt(prop.getProperty("Superadminmenucount"))) {
 			Assert.assertEquals(warehouse, 7);

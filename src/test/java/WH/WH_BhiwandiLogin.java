@@ -33,11 +33,11 @@ public class WH_BhiwandiLogin extends SuperTestNG{
 
 	@Test
 	public void BhiwandiWarehouseflow() throws Exception {
-	test = extent.createTest("Bangalore Warehouse Flow");
+	test = extent.createTest("Bhiwandi Warehouse Flow");
 	
 	L.Bhiwandiuser();
 	childTest = test.createNode("Wh login");
-	childTest.log(Status.PASS, MarkupHelper.createLabel("Login as a Agmedabad user", ExtentColor.BLUE));
+	childTest.log(Status.PASS, MarkupHelper.createLabel("Login as a Bhiwandi user", ExtentColor.BLUE));
 	
 	H.verifycopyright();
 	childTest = test.createNode("Verify copyright");

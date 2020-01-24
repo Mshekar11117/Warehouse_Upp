@@ -37,7 +37,7 @@ public class WH_BangaloreLogin extends SuperTestNG {
 	
 	L.Bangaloreuser();
 	childTest = test.createNode("Wh login");
-	childTest.log(Status.PASS, MarkupHelper.createLabel("Login as a Agmedabad user", ExtentColor.BLUE));
+	childTest.log(Status.PASS, MarkupHelper.createLabel("Login as a Bangalore user", ExtentColor.BLUE));
 	
 	H.verifycopyright();
 	childTest = test.createNode("Verify copyright");

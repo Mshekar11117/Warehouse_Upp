@@ -946,9 +946,9 @@ public class CreateOrderEditFlow extends SuperTestNG {
 
 	public void EditflowWarehouseOptionSelect() {
 		CreateOrderPOM C = new CreateOrderPOM(driver);
-		HomepagePOM h = new HomepagePOM(driver);
+		HomepagePOM H= new HomepagePOM(driver);
 
-		int menusize = h.leftsidemenus().size();
+/*		int menusize = h.leftsidemenus().size();
 		int warehouse = C.Warehouseoptions().size();
 
 		if (menusize > 1) {
@@ -960,7 +960,21 @@ public class CreateOrderEditFlow extends SuperTestNG {
 
 		Select select = new Select(C.Warehousedropdown());
 		int random = ThreadLocalRandom.current().nextInt(1, warehouse);
-		select.selectByIndex(random);
+		select.selectByIndex(random);*/
+		
+		int warehouse = C.Warehouseoptions().size();
+		System.out.println("Warehuouse drop down options--"+warehouse);
+		int menucont = H.leftsidemenus().size();
+		if (menucont == Integer.parseInt(prop.getProperty("Superadminmenucount"))) {
+			Assert.assertEquals(warehouse, 7);
+			Select select = new Select(C.Warehousedropdown());
+			int random = ThreadLocalRandom.current().nextInt(1, warehouse);
+			select.selectByIndex(random);
+		} else {
+			Assert.assertEquals(warehouse, 2);
+			Select select = new Select(C.Warehousedropdown());
+			select.selectByIndex(1);
+		}
 	}
 
 	public void EditflowInvalidDispatchDTfromWH() {

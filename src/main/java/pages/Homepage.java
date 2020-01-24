@@ -51,8 +51,10 @@ public class Homepage extends SuperTestNG {
 			Assert.assertEquals(text, prop.getProperty("Bangalore"));
 		}else if(user.equalsIgnoreCase(prop.getProperty("WHGurgaonuser"))) {
 			Assert.assertEquals(text, prop.getProperty("Gurgaon"));
-		} else {
+		} else if (user.equalsIgnoreCase(prop.getProperty("WHGuwahatiuser"))){
 			Assert.assertEquals(text, prop.getProperty("Guwahati"));
+		} else {
+			Assert.assertEquals(text, prop.getProperty("Raipur"));
 		}
 		
 	}
