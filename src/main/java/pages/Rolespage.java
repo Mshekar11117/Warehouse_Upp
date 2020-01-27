@@ -29,7 +29,13 @@ public class Rolespage extends SuperTestNG {
 		TablesPOM T = new TablesPOM(driver);
 
 		H.Rolesmenu().click();
-		Assert.assertEquals(prop.getProperty("rolesURL"), driver.getCurrentUrl());
+		String url = driver.getCurrentUrl();
+		if(url.contains("test")) {
+			Assert.assertEquals(prop.getProperty("rolesURL"), driver.getCurrentUrl());
+		} else {
+			Assert.assertEquals(prop.getProperty("LIVErolesURL"), driver.getCurrentUrl());
+		}
+		
 
 		String rtext = T.PageTitleText().getText();
 		Assert.assertEquals(prop.getProperty("Roles"), rtext);

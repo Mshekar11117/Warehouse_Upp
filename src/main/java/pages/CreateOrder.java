@@ -30,6 +30,7 @@ public class CreateOrder extends SuperTestNG {
 
 	public void AccessingCreateOrder() {
 		HomepagePOM H = new HomepagePOM(driver);
+		H.WarehouseOrdermenu().click();
 		H.CreateOrder().click();
 	}
 

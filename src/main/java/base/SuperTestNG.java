@@ -148,6 +148,7 @@ public class SuperTestNG {
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get(url);
+//		driver.get(prop.getProperty("LIVEURL"));
 	}
 	
 	public boolean isElementPresent(By by) {

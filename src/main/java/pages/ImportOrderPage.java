@@ -50,7 +50,12 @@ public class ImportOrderPage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.ImportOrder().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(prop.getProperty("importurl"), curl);
+		if(curl.contains("test")) {
+			Assert.assertEquals(prop.getProperty("importurl"), curl);
+		} else {
+			Assert.assertEquals(prop.getProperty("LIVEimporturl"), curl);
+		}
+		
 	}
 
 	public void validatetitles() {

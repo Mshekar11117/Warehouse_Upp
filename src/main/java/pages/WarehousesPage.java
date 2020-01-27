@@ -26,7 +26,13 @@ public class WarehousesPage extends SuperTestNG {
 		TablesPOM T = new TablesPOM(driver);
 
 		H.Warehousenames().click();
-		Assert.assertEquals(prop.getProperty("warehousenameURL"), driver.getCurrentUrl());
+		String url = driver.getCurrentUrl();
+		if(url.contains("test")) {
+			Assert.assertEquals(prop.getProperty("warehousenameURL"), driver.getCurrentUrl());
+		} else {
+			Assert.assertEquals(prop.getProperty("LIVEwarehousenameURL"), driver.getCurrentUrl());
+		}
+		
 
 		String rtext = T.PageTitleText().getText();
 		Assert.assertEquals(prop.getProperty("Warehouses"), rtext);

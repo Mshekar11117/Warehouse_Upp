@@ -24,7 +24,12 @@ public class Userspage extends SuperTestNG {
 
 		H.usersmenu().click();
 		String currenturl = driver.getCurrentUrl();
-		Assert.assertEquals(prop.getProperty("usersURL"), currenturl);
+		if(currenturl.contains("test")) {
+			Assert.assertEquals(prop.getProperty("usersURL"), currenturl);
+		} else {
+			Assert.assertEquals(prop.getProperty("LIVEusersURL"), currenturl);
+		}
+		
 
 		Assert.assertTrue(T.Createbutton().isDisplayed());
 		Assert.assertTrue(T.table().isDisplayed());

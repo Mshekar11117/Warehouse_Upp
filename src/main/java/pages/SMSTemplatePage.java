@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,7 +26,12 @@ public class SMSTemplatePage extends SuperTestNG {
 		TablesPOM T = new TablesPOM(driver);
 
 		H.Smstemplate().click();
-		Assert.assertEquals(prop.getProperty("smstemplateURL"), driver.getCurrentUrl());
+		String url = driver.getCurrentUrl();
+		if (url.contains("test")) {
+			Assert.assertEquals(prop.getProperty("smstemplateURL"), driver.getCurrentUrl());
+		} else {
+			Assert.assertEquals(prop.getProperty("LIVEsmstemplateURL"), driver.getCurrentUrl());
+		}
 
 		String SMStext = T.PageTitleText().getText();
 		Assert.assertEquals(prop.getProperty("SMSTemplates"), SMStext);
@@ -129,19 +133,16 @@ public class SMSTemplatePage extends SuperTestNG {
 			}
 		}
 
-		ArrayList<String> Exceldata = new ArrayList<String>();
 		int rowcount = Excel.getRowCount(xlPath, sheetname6);
-
 		for (int k = 0; k <= rowcount; k++) {
 			String Rolnames = Excel.getCellValue(xlPath, sheetname6, k, 1);
-			Exceldata.add(Rolnames);
+			if (names.contains(Rolnames)) {
+				Assert.assertTrue(true);
+			} else {
+				Assert.assertTrue(false, "Missing SMS Title name---" + Rolnames);
+			}
 		}
 
-		if (names.equals(Exceldata)) {
-			Assert.assertTrue(true);
-		} else {
-			Assert.assertTrue(false, "Missing SMS Title name---" + names);
-		}
 	}
 
 	public void printandverifySMSTemplateDesc() {
@@ -156,8 +157,8 @@ public class SMSTemplatePage extends SuperTestNG {
 
 		ArrayList<String> names = new ArrayList<String>();
 		for (int i = 1; i <= C; i++) {
-			String SMStemplatenames = driver.findElement(By.xpath("//tbody/tr[" + i + "]/td[3]")).getText();
-			names.add(SMStemplatenames);
+			String SMSnames = driver.findElement(By.xpath("//tbody/tr[" + i + "]/td[3]")).getText().toLowerCase();
+			names.add(SMSnames);
 		}
 
 		if (pagination > 0) {
@@ -171,24 +172,24 @@ public class SMSTemplatePage extends SuperTestNG {
 				page.click();
 				int rows = T.tablerows().size();
 				for (int j = 1; j <= rows; j++) {
-					String rnames = driver.findElement(By.xpath("//tbody/tr[" + j + "]/td[3]")).getText();
+					String rnames = driver.findElement(By.xpath("//tbody/tr[" + j + "]/td[3]")).getText().toLowerCase();
 					names.add(rnames);
 				}
 			}
 		}
-
-		ArrayList<String> Exceldata = new ArrayList<String>();
+		
+		ArrayList<String> rolesname = new ArrayList<String>();
 		int rowcount = Excel.getRowCount(xlPath, sheetname6);
-
 		for (int k = 0; k <= rowcount; k++) {
-			String tempnames = Excel.getCellValue(xlPath, sheetname6, k, 2);
-			Exceldata.add(tempnames);
-		}
-
-		if (names.equals(Exceldata)) {
-			Assert.assertTrue(true);
-		} else {
-			Assert.assertTrue(false, "Missing SMS Template name---" + names);
+			String Rolnamesdesc = Excel.getCellValue(xlPath, sheetname6, k, 2).toLowerCase();
+			rolesname.add(Rolnamesdesc);
+			
+			if (names.contains(Rolnamesdesc)) {
+				Assert.assertTrue(true);
+			} else {
+				
+				Assert.assertTrue(false, "Missing SMS Title Descriptions---" + Rolnamesdesc);
+			}
 		}
 
 	}

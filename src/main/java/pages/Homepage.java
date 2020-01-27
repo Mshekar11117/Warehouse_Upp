@@ -117,7 +117,12 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.kycmenu().click();
 		String currenturl = driver.getCurrentUrl();
-		Assert.assertEquals(currenturl, prop.getProperty("KycURL"));
+		if(currenturl.contains("test")) {
+			Assert.assertEquals(currenturl, prop.getProperty("KycURL"));
+		} else {
+			Assert.assertEquals(currenturl, prop.getProperty("LIVEKycURL"));
+		}
+		
 		Thread.sleep(5000);
 	}
 
@@ -125,7 +130,12 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.usersmenu().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(curl, prop.getProperty("usersURL"));
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("usersURL"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEusersURL"));
+		}
+		
 		Thread.sleep(5000);
 	}
 
@@ -133,7 +143,12 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.Rolesmenu().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(curl, prop.getProperty("rolesURL"));
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("rolesURL"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVErolesURL"));
+		}
+		
 		Thread.sleep(5000);
 	}
 
@@ -141,7 +156,12 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.Permission().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(curl, prop.getProperty("permissionsURL"));
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("permissionsURL"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEpermissionsURL"));
+		}
+		
 		Thread.sleep(5000);
 	}
 
@@ -149,7 +169,12 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.Warehousenames().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(curl, prop.getProperty("warehousenameURL"));
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("warehousenameURL"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEwarehousenameURL"));
+		}
+		
 		Thread.sleep(5000);
 	}
 
@@ -157,7 +182,11 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.Countries().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(curl, prop.getProperty("countriesURL"));
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("countriesURL"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEcountriesURL"));
+		}
 		Thread.sleep(5000);
 	}
 
@@ -165,7 +194,12 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.Smstemplate().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(curl, prop.getProperty("smstemplateURL"));
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("smstemplateURL"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEsmstemplateURL"));
+		}
+		
 		Thread.sleep(5000);
 	}
 
@@ -173,7 +207,38 @@ public class Homepage extends SuperTestNG {
 		HomepagePOM H = new HomepagePOM(driver);
 		H.WarehouseOrdermenu().click();
 		String curl = driver.getCurrentUrl();
-		Assert.assertEquals(curl, prop.getProperty("warehouseurl"));
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("warehouseurl"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEwarehouseurl"));
+		}
+		
+		Thread.sleep(5000);
+	}
+	
+	public void getUppPayments() throws Exception {
+		HomepagePOM H = new HomepagePOM(driver);
+		H.UppPayment().click();
+		String curl = driver.getCurrentUrl();
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("upppaymentsurl"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEupppaymentsurl"));
+		}
+		
+		Thread.sleep(5000);
+	}
+	
+	public void getUppDistributors() throws Exception {
+		HomepagePOM H = new HomepagePOM(driver);
+		H.UppDistributor().click();
+		String curl = driver.getCurrentUrl();
+		if(curl.contains("test")) {
+			Assert.assertEquals(curl, prop.getProperty("uppdistributorurl"));
+		} else {
+			Assert.assertEquals(curl, prop.getProperty("LIVEuppdistributorurl"));
+		}
+		
 		Thread.sleep(5000);
 	}
 

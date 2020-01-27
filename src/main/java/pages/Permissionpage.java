@@ -24,8 +24,12 @@ public class Permissionpage extends SuperTestNG {
 		TablesPOM T = new TablesPOM(driver);
 
 		H.Permission().click();
-		Assert.assertEquals(prop.getProperty("permissionsURL"), driver.getCurrentUrl());
-
+		String cururl = driver.getCurrentUrl();
+		if (cururl.contains("test")) {
+			Assert.assertEquals(prop.getProperty("permissionsURL"), driver.getCurrentUrl());
+		} else {
+			Assert.assertEquals(prop.getProperty("LIVEpermissionsURL"), driver.getCurrentUrl());
+		}
 		String ptext = T.PageTitleText().getText();
 		Assert.assertEquals(prop.getProperty("permissiontext"), ptext);
 		Assert.assertTrue(T.table().isDisplayed());
@@ -81,7 +85,7 @@ public class Permissionpage extends SuperTestNG {
 
 		ArrayList<String> names = new ArrayList<String>();
 		for (int i = 1; i <= C; i++) {
-			String Permissionname = driver.findElement(By.xpath("//tbody/tr[" + i + "]/td[2]")).getText();
+			String Permissionname = driver.findElement(By.xpath("//tbody/tr[" + i + "]/td[2]")).getText().toLowerCase();
 			names.add(Permissionname);
 		}
 
@@ -96,43 +100,45 @@ public class Permissionpage extends SuperTestNG {
 				page.click();
 				int rows = T.tablerows().size();
 				for (int j = 1; j <= rows; j++) {
-					String rnames = driver.findElement(By.xpath("//tbody/tr[" + j + "]/td[2]")).getText();
+					String rnames = driver.findElement(By.xpath("//tbody/tr[" + j + "]/td[2]")).getText().toLowerCase();
 					names.add(rnames);
 				}
 			}
 		}
 
-		ArrayList<String> Exceldata = new ArrayList<String>();
+//		ArrayList<String> Exceldata = new ArrayList<String>();
 		int rowcount = Excel.getRowCount(xlPath, sheetname2);
 
 		for (int k = 0; k <= rowcount; k++) {
 			String Rolnames = Excel.getCellValue(xlPath, sheetname2, k, 1);
-			Exceldata.add(Rolnames);
+//			Exceldata.add(Rolnames);
+			if (names.contains(Rolnames.toLowerCase())) {
+				Assert.assertTrue(true);
+			} else {
+				System.out.println(names);
+				System.out.println(Rolnames);
+				Assert.assertTrue(false, "Missing persmiision name---" + names);
+			}
 		}
 
-		if (names.equals(Exceldata)) {
-			Assert.assertTrue(true);
-		} else {
-			Assert.assertTrue(false, "Missing persmiision name---" + names);
-		}
 	}
 
 	public void printandverifypermissiondescription() {
 		PaginationPOM P = new PaginationPOM(driver);
 		HomepagePOM h = new HomepagePOM(driver);
 		TablesPOM T = new TablesPOM(driver);
-		
+
 		h.Permission().click();
 
 		int C = T.tablerows().size();
 		int pagination = P.numberpagination().size();
-		
+
 		ArrayList<String> descnames = new ArrayList<String>();
 		for (int i = 1; i <= C; i++) {
-			String Permissionname = driver.findElement(By.xpath("//tbody/tr[" + i + "]/td[3]")).getText();
+			String Permissionname = driver.findElement(By.xpath("//tbody/tr[" + i + "]/td[3]")).getText().toLowerCase();
 			descnames.add(Permissionname);
 		}
-		
+
 		if (pagination > 0) {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -144,25 +150,22 @@ public class Permissionpage extends SuperTestNG {
 				page.click();
 				int rows = T.tablerows().size();
 				for (int j = 1; j <= rows; j++) {
-					String rnames = driver.findElement(By.xpath("//tbody/tr[" + j + "]/td[3]")).getText();
+					String rnames = driver.findElement(By.xpath("//tbody/tr[" + j + "]/td[3]")).getText().toLowerCase();
 					descnames.add(rnames);
 				}
 			}
 		}
-				
-		ArrayList<String> Exceldata = new ArrayList<String>();
-		int rowcount = Excel.getRowCount(xlPath, sheetname2);
 
-		for (int k = 0; k <= rowcount; k++) {
-			String Rolnames = Excel.getCellValue(xlPath, sheetname2, k, 2);
-			Exceldata.add(Rolnames);
+//		int rowcount = Excel.getRowCount(xlPath, sheetname2);
+		for (int k = 0; k <= C; k++) {
+			String Rolnames = Excel.getCellValue(xlPath, sheetname2, k, 2).toLowerCase();
+			if (descnames.contains(Rolnames)) {
+				Assert.assertTrue(true);
+			} else {
+				Assert.assertTrue(false, "Following permissions---" + Rolnames);
+			}
 		}
-		
-		if (descnames.equals(Exceldata)) {
-			Assert.assertTrue(true);
-		} else {
-			Assert.assertTrue(false, "Following permissions---" + descnames);
-		}
+
 	}
 
 	public void createpermission() {

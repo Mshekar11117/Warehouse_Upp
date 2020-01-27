@@ -29,7 +29,13 @@ public class Countries extends SuperTestNG {
 		TablesPOM T = new TablesPOM(driver);
 
 		H.Countries().click();
-		Assert.assertEquals(prop.getProperty("countriesURL"), driver.getCurrentUrl());
+		String url = driver.getCurrentUrl();
+		if(url.contains("test")) {
+			Assert.assertEquals(prop.getProperty("countriesURL"), driver.getCurrentUrl());
+		} else {
+			Assert.assertEquals(prop.getProperty("LIVEcountriesURL"), driver.getCurrentUrl());
+		}
+		
 
 		String rtext = T.PageTitleText().getText();
 		Assert.assertEquals(prop.getProperty("Country"), rtext);

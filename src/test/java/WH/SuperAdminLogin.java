@@ -78,7 +78,7 @@ public class SuperAdminLogin extends SuperTestNG {
 		childTest = test.createNode("Verify profile username");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the username between Nav bar riht side and user profile", ExtentColor.BLUE));
 				
-	/*	H.getwarehouseaccess();
+		H.getwarehouseaccess();
 		childTest = test.createNode("Warehouse access Permission as per the user");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Check the warehouse access limit", ExtentColor.BLUE));
 				
@@ -378,7 +378,7 @@ public class SuperAdminLogin extends SuperTestNG {
 				
 		R.Deletepermission();
 		childTest = test.createNode("Deletepermission");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Delete Permission using Delete function", ExtentColor.BLUE));*/
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Delete Permission using Delete function", ExtentColor.BLUE));
 				
 		W.AccessingWarehousePage();
 		childTest = test.createNode("AccessingRolesPage");
