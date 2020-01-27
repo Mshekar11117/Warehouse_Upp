@@ -29,7 +29,7 @@
 	<test name="Production Environment Test Cases">
 	<parameter name="url" value="https://india.unicityportal.com/warehouseorder/auth/login" />
 		<classes>
-			
+			<class name="whlive.LiveSuperAdminLogin"></class>
 		</classes>
 	</test>
 </suite>
