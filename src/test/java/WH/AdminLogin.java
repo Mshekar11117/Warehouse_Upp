@@ -73,7 +73,7 @@ public class AdminLogin extends SuperTestNG{
 		childTest = test.createNode("Verify copyright");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify copy right message", ExtentColor.BLUE));
 						
-/*		H.getprofileusername();
+		H.getprofileusername();
 		childTest = test.createNode("Verify profile username");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the username between Nav bar riht side and user profile", ExtentColor.BLUE));
 				
@@ -417,7 +417,7 @@ public class AdminLogin extends SuperTestNG{
 				
 		W.DeleteWarehouses();
 		childTest = test.createNode("DeleteWarehouses");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Delete Warehouses last record using Delete function", ExtentColor.BLUE));*/
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Delete Warehouses last record using Delete function", ExtentColor.BLUE));
 				
 		Co.AccessingCountriesPage();
 		childTest = test.createNode("AccessingCountriesPage");
@@ -455,7 +455,7 @@ public class AdminLogin extends SuperTestNG{
 		childTest = test.createNode("DeleteCountries");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Delete Countries last record using Delete function", ExtentColor.BLUE));
 				
-		/*SMS.AccessingSMSTemplatePage();
+		SMS.AccessingSMSTemplatePage();
 		childTest = test.createNode("AccessingSMSTemplatePage");
 		childTest.log(Status.PASS, MarkupHelper.createLabel("Accessing SMS Template page and verifying page text and URL", ExtentColor.BLUE));
 				
@@ -1498,7 +1498,7 @@ public class AdminLogin extends SuperTestNG{
 		
 		UppSearch.EportOrderSheetUpload();
 		childTest = test.createNode("Search by Order Upload sheet checkbox and then export the search");
-		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the row count of Exported Excel comparing to HTML rows in Application", ExtentColor.BLUE));*/
+		childTest.log(Status.PASS, MarkupHelper.createLabel("Verify the row count of Exported Excel comparing to HTML rows in Application", ExtentColor.BLUE));
 		
 		L.logout();
 		childTest = test.createNode("Logout function");

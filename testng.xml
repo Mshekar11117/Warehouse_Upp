@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" thread-count="4" parallel="tests">
-
-	<listeners>
-		<!-- <listener class-name="resources.listeners"></listener> -->
-		<!-- By Implementing TestNG IRetryAnalyzer. -->
-		<!-- <listener class-name="utilities.RetryListenerClass"></listener> -->
-	</listeners>
-	
-	<test name="QA Environment Test Cases">
-	<parameter name="url" value="https://india.unicityportal.com/test_warehouseorder/auth/login" />
-		<classes>
-			<class name="WH.CommonLogin" />
-			<class name="WH.SuperAdminLogin" />
-			<class name="WH.AdminLogin" />
-			<class name="WH.UppLogin" />
-			<class name="WH.WH_AhmedabadLogin"/>
-			<class name="WH.WH_BangaloreLogin"/>
-			<class name="WH.WH_BhiwandiLogin"/>
-			<class name="WH.WH_GurgaonLogin"/>
-			<class name="WH.WH_GuwahatiLogin"/>
-			<class name="WH.WH_RaipurLogin"/>
-			<class name="WH.CustomerCareLogin"/>
-			<class name="WH.EscalationMailPage"/>
-		</classes>
-	</test>
-	
-	<test name="Production Environment Test Cases">
-	<parameter name="url" value="https://india.unicityportal.com/warehouseorder/auth/login" />
-		<classes>
-			<class name="whlive.LiveSuperAdminLogin"></class>
-		</classes>
-	</test>
-</suite>
+<suite name="Suite" parallel="tests" thread-count="2">
+  <test name="QN Env">
+  	<parameter name="url" value="https://india.unicityportal.com/test_warehouseorder/auth/login" />
+    	<classes>
+      		<class name="WH.CommonLogin"/>
+      		<class name="WH.WH_GurgaonLogin"/>
+      		<!-- <class name="WH.WH_BhiwandiLogin"/>
+      		<class name="WH.EscalationMailPage"/>
+      		<class name="WH.AdminLogin"/>																							
+      		<class name="WH.WH_RaipurLogin"/>
+      		<class name="WH.WH_AhmedabadLogin"/>
+      		<class name="WH.UppLogin"/>
+      		<class name="WH.WH_BangaloreLogin"/>
+      		<class name="WH.SuperAdminLogin"/>
+      		<class name="WH.CustomerCareLogin"/>
+      		<class name="WH.WH_GuwahatiLogin"/> -->
+    	</classes>
+  </test> <!-- Test -->
+  	
+  <test name = "Production Env">
+  	<parameter name="url" value="https://india.unicityportal.com/warehouseorder/auth/login" />
+  		<classes>
+  			<!-- <class name="whlive.LiveSuperAdminLogin"/> -->
+  				<class name="whlive.LiveCommonLogin"/>
+  		</classes>
+  	</test>
+</suite> <!-- Suite -->

@@ -25,7 +25,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
@@ -81,7 +84,7 @@ public class SuperTestNG {
 	public static ExtentTest childTest;
 	public static String Exceldownloadpath = System.getProperty("user.dir") + "\\Exportfiles";
 		
-	@BeforeTest
+	@BeforeSuite
 	public void StartReport() {
 		String filename = System.getProperty("user.dir") + "/Reports/Extent.html";
 		htmlreport = new ExtentHtmlReporter(filename);
@@ -95,6 +98,7 @@ public class SuperTestNG {
 		htmlreport.config().setReportName("Regression Testing");
 		htmlreport.config().setTestViewChartLocation(ChartLocation.TOP);
 		htmlreport.config().setTheme(Theme.STANDARD);
+		System.out.println("@BeforeTest HTML report section");
 	}
 
 	@Parameters({"url"})
@@ -129,13 +133,6 @@ public class SuperTestNG {
 			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			driver = new ChromeDriver(options);
 			
-			/*DesiredCapabilities cap = DesiredCapabilities.chrome();
-			cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
-			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			cap.setCapability(ChromeOptions.CAPABILITY, options);
-			driver = new RemoteWebDriver(new URL(prop.getProperty("nodeurl")), cap);*/
-			
-			
 		}
 
 		else if (browser.equals("firefox")) {
@@ -148,7 +145,7 @@ public class SuperTestNG {
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get(url);
-//		driver.get(prop.getProperty("LIVEURL"));
+		System.out.println("@BeforeMethod Driver section");
 	}
 	
 	public boolean isElementPresent(By by) {
@@ -191,7 +188,15 @@ public class SuperTestNG {
 					MarkupHelper.createLabel(result.getName() + " Test Case SKIPPED", ExtentColor.ORANGE));
 			childTest.skip(result.getThrowable());
 		}
+		
 		driver.quit();
-		extent.flush();
+		
 	}
+	
+	@AfterSuite()
+	public void flush() {
+		extent.flush();
+		System.out.println("@AfterMethod Report pass or fail generating report section");
+	}
+	
 }
